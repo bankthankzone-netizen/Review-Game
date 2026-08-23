@@ -167,7 +167,6 @@
 </div>
 
 <script>
-    // รวมเครื่องเกมทุก Gen ครบถ้วน
     const generations = [
         {
             title: "Active Platforms / Current Gen",
@@ -242,17 +241,19 @@
         }
     ];
 
-    // ฐานข้อมูลบทความรีวิวเจาะลึก
+    // ฐานข้อมูลเกม - อัปเดตรูปจาก Repository ของคุณ
     const games = [
         { 
             id: "contra-fc",
             consoleId: "fc", 
             name: "Contra", 
             score: "10/10",
-            cover: "https://github.com/bankthankzone-netizen/Review-Game/commit/0cc5e8593393146477736ad249b3e288125575dd",
+            // รูปปกจาก Commit 0cc5e85
+            cover: "https://raw.githubusercontent.com/bankthankzone-netizen/Review-Game/0cc5e8593393146477736ad249b3e288125575dd/65fe07.png",
+            // รูปเกมเพลย์จาก Commit 8cb8784 และ b79f119
             screenshots: [
-                "https://github.com/bankthankzone-netizen/Review-Game/commit/8cb87843658776a61879e194133e55a2a8902d02",
-                "https://github.com/bankthankzone-netizen/Review-Game/commit/b79f119fb3ff28e99dd7fc871901329d96eda103"
+                "https://raw.githubusercontent.com/bankthankzone-netizen/Review-Game/8cb87843658776a61879e194133e55a2a8902d02/f746db.png",
+                "https://raw.githubusercontent.com/bankthankzone-netizen/Review-Game/b79f119fb3ff28e99dd7fc871901329d96eda103/bd0bd5.png"
             ],
             summary: "สุดยอดเกมเดินยิงระดับตำนาน การต่อสู้ของ 2 ทหารกล้าถล่มกองทัพเอเลี่ยน!",
             story: "เรื่องราวเกิดขึ้นในปี ค.ศ. 2633 องค์กรก่อการร้ายต่างดาวในนาม 'Red Falcon' ได้แอบเข้ามายึดครองเกาะ Galuga ใกล้กับอเมริกาใต้ และตั้งฐานปฏิบัติการเพื่อเตรียมล้างเผ่าพันธุ์มนุษยชาติ กองกำลังทหารพิเศษ Earth Marine Corp จึงได้ส่งสองยอดหน่วยรบพิเศษ 'Contra' นามว่า Bill Rizer (Mad Dog) และ Lance Bean (Scorpion) เข้าสู่สมรภูมิเพื่อทำลายล้างพวกมันให้สิ้นซาก",
