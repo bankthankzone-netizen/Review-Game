@@ -114,8 +114,8 @@
         .summary-info h3 { margin: 0 0 5px 0; color: #38bdf8; font-size: 1.1rem; }
         .summary-info p { font-size: 13px; color: #94a3b8; margin: 5px 0; line-clamp: 2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* Tag สำหรับแนวเกม */
-        .genre-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+        /* Tag หมวดหมู่เกม */
+        .genre-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
         .genre-tag { 
             background: rgba(56, 189, 248, 0.15); 
             color: #38bdf8; 
@@ -251,14 +251,14 @@
         }
     ];
 
-    // ฐานข้อมูลเกม - เพิ่ม genres, graphicsReview และ soundReview
+    // ฐานข้อมูลเกม - แยก graphicsReview และ soundReview
     const games = [
         { 
             id: "contra-fc",
             consoleId: "fc", 
             name: "Contra", 
             score: "10/10",
-            genres: ["Action", "Run and Gun", "Sci-Fi"], // หมวดหมู่เกมแบบหลายแนว
+            genres: ["Action", "Run and Gun", "Sci-Fi"],
             cover: "https://i.postimg.cc/gJjyfS65/00.jpg",
             screenshots: [
                 "https://i.postimg.cc/Zny8qWHH/01.jpg",
@@ -268,8 +268,8 @@
             story: "เรื่องราวเกิดขึ้นในปี ค.ศ. 2633 องค์กรก่อการร้ายต่างดาวในนาม 'Red Falcon' ได้แอบเข้ามายึดครองเกาะ Galuga ใกล้กับอเมริกาใต้ และตั้งฐานปฏิบัติการเพื่อเตรียมล้างเผ่าพันธุ์มนุษยชาติ กองกำลังทหารพิเศษ Earth Marine Corp จึงได้ส่งสองยอดหน่วยรบพิเศษ 'Contra' นามว่า Bill Rizer (Mad Dog) และ Lance Bean (Scorpion) เข้าสู่สมรภูมิเพื่อทำลายล้างพวกมันให้สิ้นซาก",
             lore: "คำว่า 'Contra' ในจักรวาลของเกม ไม่ได้หมายถึงชื่อตัวละคร แต่เป็น 'รหัสยศพิเศษ' ที่มอบให้กับทหารที่มีจิตวิญญาณแห่งการรบอันเหนือมนุษย์ มีความสามารถในการใช้อาวุธทุกรูปแบบ และสามารถเอาชีวิตรอดในสภาพแวดล้อมที่โหดร้ายที่สุดได้ ตัวละคร Bill และ Lance ได้รับแรงบันดาลใจด้านรูปร่างมาจากดารานักบู๊ฮอลลีวูดอย่าง Arnold Schwarzenegger และ Sylvester Stallone ในยุค 80s",
             gameplayReview: "เกมเพลย์เป็นแนว Action Side-Scrolling ที่ผสมผสานฉากการเล่นทั้งแบบมุมมองด้านข้างและมุมมอง 3D ด้านหลัง (ในฉากฐานทัพ) อาวุธที่มีให้เก็บหลากหลาย โดยเฉพาะ 'S' (Spread Gun) ที่ยิงกระสุนกระจายเป็นพัดซึ่งเป็นอาวุธยอดฮิต ตัวเกมมีความท้าทายสูงมาก พลาดโดนยิงครั้งเดียวเสียชีวิตทันที นำไปสู่สูตรกดในตำนาน Konami Code 'ขึ้น ขึ้น ลง ลง ซ้าย ขวา ซ้าย ขวา บี เอ' เพื่อเพิ่มชีวิตเป็น 30 ตัว",
-            graphicsReview: "ในยุค Famicom ถือว่าทำภาพได้สว่างสดใส สไปรต์ตัวละครขยับได้ลื่นไหล ฉากหลังมีรายละเอียดดีเยี่ยม ทั้งเอฟเฟกต์ระเบิด น้ำตก หรือส่วนของเครื่องจักรและสิ่งมีชีวิตต่างดาวในด่านหลังๆ ที่ออกแบบได้น่ากลัวตื่นตาตื่นใจในยุคนั้น",
-            soundReview: "เพลงประกอบระดับขึ้นหิ้ง (Masterpiece) โดยทีม Konami Kukeiha Club ดนตรีสไตล์ 8-bit Synth-Rock ปลุกใจและเร้าอารมณ์สุดๆ เสียงเอฟเฟกต์การยิงปืน 'ปิ้วๆ' และเสียงระเบิดเป็นเอกลักษณ์เฉพาะตัวที่แฟนเกมยุค 80s-90s จำได้ทันทีที่ได้ยิน"
+            graphicsReview: "ในยุค 8-bit ถือว่าทำกราฟิกสไปรต์ตัวละครขยับได้ลื่นไหล ฉากหลังมีรายละเอียดดีเยี่ยม ตั้งแต่ป่าดงดิบไปจนถึงฐานทัพเอเลี่ยนชีวภาพที่ทำออกมาได้น่าตื่นตาตื่นใจมากในยุคนั้น",
+            soundReview: "เพลงประกอบระดับขึ้นหิ้ง (Masterpiece) โดย Konami Kukeiha Club ดนตรี Synth-Rock ปลุกใจเร้าอารมณ์สุดๆ พร้อมเสียงเอฟเฟกต์ยิงปืนและระเบิดที่เป็นเอกลักษณ์จดจำง่าย"
         }
     ];
 
@@ -411,9 +411,11 @@
             <div class="section-header">🎮 GAMEPLAY REVIEW (รีวิวระบบเกม)</div>
             <p class="detail-text">${game.gameplayReview}</p>
 
-            <div class="section-header">🎨 GRAPHICS & SOUND (กราฟิกและเสียงประกอบ)</div>
-            <p class="detail-text"><strong>Graphics:</strong> ${game.graphicsReview || 'N/A'}</p>
-            <p class="detail-text" style="margin-top: 10px;"><strong>Sound & Music:</strong> ${game.soundReview || 'N/A'}</p>
+            <div class="section-header">🎨 GRAPHICS REVIEW (กราฟิก)</div>
+            <p class="detail-text">${game.graphicsReview || 'N/A'}</p>
+
+            <div class="section-header">🎵 SOUND & MUSIC REVIEW (ดนตรีและเสียงประกอบ)</div>
+            <p class="detail-text">${game.soundReview || 'N/A'}</p>
 
             ${screenshotsHtml}
         `;
