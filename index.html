@@ -162,7 +162,7 @@
 
     <div class="layout-grid">
         
-        <!-- เมนูด้านซ้าย (Left Navigation Sidebar) -->
+        <!-- Left Navigation Sidebar -->
         <div class="left-sidebar">
             <div class="nav-header">NAVIGATION</div>
             <div class="nav-menu">
@@ -181,7 +181,7 @@
             </div>
         </div>
 
-        <!-- ตรงกลาง: เนื้อหาหลัก (Main Content Area) -->
+        <!-- Main Content Area -->
         <div class="content-area">
             
             <!-- Tab 1: Game Systems & Reviews -->
@@ -203,28 +203,28 @@
                 </div>
             </div>
 
-            <!-- Tab 2: Game Characters (เลือกเกม -> เลือกตัวละคร -> ดูประวัติ) -->
+            <!-- Tab 2: Game Characters -->
             <div id="charactersPage" class="page-section">
                 <!-- 2.1 หน้ารวมเกมที่มีตัวละคร -->
                 <div id="charGamesList">
                     <div class="section-box">
-                        <h2 class="section-header-title">👤 GAME CHARACTERS (เลือกเกมเพื่อดูตัวละคร)</h2>
+                        <h2 class="section-header-title">👤 GAME CHARACTERS (เลือกเกมเพื่อดูตัวละครและบอส)</h2>
                         <div class="item-grid" id="charGamesGrid"></div>
                     </div>
                 </div>
 
-                <!-- 2.2 หน้ารวมตัวละครของเกมที่เลือก -->
+                <!-- 2.2 หน้ารวมตัวละคร/บอสในเกมที่เลือก -->
                 <div id="charListByGame" style="display:none;">
                     <button class="back-btn" onclick="goBackToCharGames()">← Back to Games</button>
                     <div class="section-box">
-                        <h2 class="section-header-title" id="charGameTitle">CHARACTERS IN GAME</h2>
+                        <h2 class="section-header-title" id="charGameTitle">CHARACTERS & BOSSES IN GAME</h2>
                         <div class="item-grid" id="charactersGrid"></div>
                     </div>
                 </div>
 
-                <!-- 2.3 หน้าประวัติตัวละครแบบเจาะลึก -->
+                <!-- 2.3 หน้าประวัติตัวละคร/บอสเจาะลึก -->
                 <div id="charProfileDetail" style="display:none;">
-                    <button class="back-btn" onclick="goBackToCharList()">← Back to Characters</button>
+                    <button class="back-btn" onclick="goBackToCharList()">← Back to Characters List</button>
                     <div class="section-box" id="charProfileContent"></div>
                 </div>
             </div>
@@ -263,7 +263,7 @@
 
         </div>
 
-        <!-- เมนูด้านขวา (Right Sidebar - New Reviews) -->
+        <!-- Right Sidebar (New Reviews) -->
         <div class="right-sidebar">
             <div class="sidebar-title">
                 <span>NEW REVIEWS</span>
@@ -275,7 +275,7 @@
     </div>
 </div>
 
-<!-- Modal สำหรับขยายภาพ -->
+<!-- Modal ขยายภาพ -->
 <div id="imageModal" class="image-modal" onclick="closeImageModal()">
     <span class="modal-close" onclick="closeImageModal()">&times;</span>
     <img id="modalImg" class="modal-content" src="" alt="Enlarged Image">
@@ -283,7 +283,6 @@
 
 <script>
     // --- DATABASE --- //
-    // รายชื่อ Generation ทั้งหมด (ครบ 1-8 Gen)
     const generations = [
         {
             title: "Active Platforms / Current Gen",
@@ -358,7 +357,6 @@
         }
     ];
 
-    // รายชื่อเกมและเนื้อหาเต็ม
     const games = [
         { 
             id: "contra-fc",
@@ -375,14 +373,14 @@
             ],
             summary: "สุดยอดเกมเดินยิงระดับตำนาน การต่อสู้ของ 2 ทหารกล้าถล่มกองทัพเอเลี่ยน!",
             story: "เรื่องราวเกิดขึ้นในปี ค.ศ. 2633 องค์กรก่อการร้ายต่างดาวในนาม 'Red Falcon' ได้แอบเข้ามายึดครองเกาะ Galuga ใกล้กับอเมริกาใต้ และตั้งฐานปฏิบัติการเพื่อเตรียมล้างเผ่าพันธุ์มนุษยชาติ กองกำลังทหารพิเศษ Earth Marine Corp จึงได้ส่งสองยอดหน่วยรบพิเศษ 'Contra' นามว่า Bill Rizer (Mad Dog) และ Lance Bean (Scorpion) เข้าสู่สมรภูมิเพื่อทำลายล้างพวกมันให้สิ้นซาก",
-            lore: "คำว่า 'Contra' ในจักรวาลของเกม ไม่ได้หมายถึงชื่อตัวละคร แต่เป็น 'รหัสยศพิเศษ' ที่มอบให้กับทหารที่มีจิตวิญญาณแห่งการรบอันเหนือมนุษย์ มีความสามารถในการใช้อาวุธทุกรูปแบบ และสามารถเอาชีวิตรอดในสภาพแวดล้อมที่โหดร้ายที่สุดได้ ตัวละคร Bill และ Lance ได้รับแรงบันดาลใจด้านรูปร่างมาจากดารานักบู๊ฮอลลีวูดอย่าง Arnold Schwarzenegger และ Sylvester Stallone ในยุค 80s",
+            lore: "คำว่า 'Contra' ในจักรวาลของเกม หมายถึง 'รหัสยศพิเศษ' ที่มอบให้กับทหารที่มีจิตวิญญาณแห่งการรบอันเหนือมนุษย์ มีความสามารถในการใช้อาวุธทุกรูปแบบ และสามารถเอาชีวิตรอดในสภาพแวดล้อมที่โหดร้ายที่สุดได้ ตัวละคร Bill และ Lance ได้รับแรงบันดาลใจด้านรูปร่างมาจากดารานักบู๊ฮอลลีวูดอย่าง Arnold Schwarzenegger และ Sylvester Stallone ในยุค 80s",
             gameplayReview: "เกมเพลย์เป็นแนว Action Side-Scrolling ที่ผสมผสานฉากการเล่นทั้งแบบมุมมองด้านข้างและมุมมอง 3D ด้านหลัง (ในฉากฐานทัพ) อาวุธที่มีให้เก็บหลากหลาย โดยเฉพาะ 'S' (Spread Gun) ที่ยิงกระสุนกระจายเป็นพัดซึ่งเป็นอาวุธยอดฮิต ตัวเกมมีความท้าทายสูงมาก พลาดโดนยิงครั้งเดียวเสียชีวิตทันที นำไปสู่สูตรกดในตำนาน Konami Code 'ขึ้น ขึ้น ลง ลง ซ้าย ขวา ซ้าย ขวา บี เอ' เพื่อเพิ่มชีวิตเป็น 30 ตัว",
             graphicsReview: "ในยุค 8-bit ถือว่าทำกราฟิกสไปรต์ตัวละครขยับได้ลื่นไหล ฉากหลังมีรายละเอียดดีเยี่ยม ตั้งแต่ป่าดงดิบไปจนถึงฐานทัพเอเลี่ยนชีวภาพที่ทำออกมาได้น่าตื่นตาตื่นใจมากในยุคนั้น",
             soundReview: "เพลงประกอบระดับขึ้นหิ้ง (Masterpiece) โดย Konami Kukeiha Club ดนตรี Synth-Rock ปลุกใจเร้าอารมณ์สุดๆ พร้อมเสียงเอฟเฟกต์ยิงปืนและระเบิดที่เป็นเอกลักษณ์จดจำง่าย"
         }
     ];
 
-    // ฐานข้อมูลตัวละครในแต่ละเกม
+    // ฐานข้อมูลตัวละครและบอสทั้งหมดใน Contra NES
     const characterDatabase = [
         {
             gameId: "contra-fc",
@@ -403,6 +401,69 @@
                     role: "ตัวละครหลัก (Player 2)",
                     thumb: "https://i.postimg.cc/gJjyfS65/00.jpg",
                     bio: "คู่หูสายลุยของ Bill Rizer ที่ได้รับแรงบันดาลใจจาก Sylvester Stallone โดดเด่นด้านความคล่องตัวและการวางแผนรบท่ามกลางวงล้อมของศัตรู"
+                },
+                {
+                    id: "boss-stage1",
+                    name: "Defense Wall Dragon God (Hermit)",
+                    role: "บอสหลัก Stage 1: Jungle",
+                    thumb: "https://i.postimg.cc/Zny8qWHH/01.jpg",
+                    bio: "กำแพงป้องกันด่านแรกของเกาะ Galuga ประกอบด้วยปืนกลด้านบนสองกระบอก และมีหัวใจหลักคือ 'Hermit Sensor' ที่คอยปล่อยกระสุนปืนกลระลอกใหญ่ใส่ผู้บุกรุก"
+                },
+                {
+                    id: "boss-stage2",
+                    name: "Guariba System (Core System)",
+                    role: "บอสหลัก Stage 2: Base 1",
+                    thumb: "https://i.postimg.cc/h4J6mM32/02.jpg",
+                    bio: "ระบบรักษาความปลอดภัยอิเล็กทรอนิกส์ด้านในฐานทัพ 1 ที่มีแกนกลางยิงเลเซอร์ และมีปืนกลซ้าย-ขวาคอยคุ้มกัน ต้องทำลายปืนกลก่อนจึงจะเปิดจุดอ่อนแกนกลาง"
+                },
+                {
+                    id: "boss-stage3",
+                    name: "Shadow Beast Devil God Gormakita",
+                    role: "บอสหลัก Stage 3: Waterfall",
+                    thumb: "https://i.postimg.cc/gJjyfS65/00.jpg",
+                    bio: "เทวรูปโบราณขนาดใหญ่ตั้งอยู่บนยอดน้ำตก ถูกพวก Red Falcon นำเทคโนโลยีเอเลี่ยนมาควบคุม สามารถพ่นเปลวไฟออกจากปาก และปล่อยงูไฟโจมตีลงมาจากด้านบน"
+                },
+                {
+                    id: "boss-stage4",
+                    name: "Gaba (God of Defense Core)",
+                    role: "บอสหลัก Stage 4: Base 2",
+                    thumb: "https://i.postimg.cc/h4J6mM32/02.jpg",
+                    bio: "คอมพิวเตอร์ชีวภาพหัวเอเลี่ยนขนาดใหญ่ในฐานทัพ 2 คอยปล่อยร่างแยกคลื่นพลังงานออกมาสู้ เป็นหนึ่งในบอสที่ต้องอาศัยการยิงระยะกระชั้นชิดหรือใช้ Spread Gun ถล่ม"
+                },
+                {
+                    id: "boss-stage5",
+                    name: "High-Speed Armored Tank Big Fuzz",
+                    role: "บอสหลัก Stage 5: Snow Field",
+                    thumb: "https://i.postimg.cc/Zny8qWHH/01.jpg",
+                    bio: "ยานเกราะปืนใหญ่หุ้มเกราะหนักตระเวนลุยหิมะ มีหัวยิงลูกระเบิดและปืนกลหนักรอบทิศทาง คอยดักซุ่มตรงทางเข้าโรงงานสโนว์ฟิลด์"
+                },
+                {
+                    id: "boss-stage6",
+                    name: "Kabuto / Giant Solider Kimkou",
+                    role: "บอสหลัก Stage 6: Energy Zone",
+                    thumb: "https://i.postimg.cc/gJjyfS65/00.jpg",
+                    bio: "หุ่นยนต์ทหารยักษ์หุ้มเกราะเหล็กแหลม บอสประจำเขตพลังงาน มีความสามารถในการกระโดดทับและกระโดดข้ามฝั่งไปมาด้วยความเร็วสูง"
+                },
+                {
+                    id: "boss-stage7",
+                    name: "Girona / Defense Gate Groma",
+                    role: "บอสหลัก Stage 7: Hangar",
+                    thumb: "https://i.postimg.cc/Zny8qWHH/01.jpg",
+                    bio: "ประตูป้องกันคลังสินค้าสุดท้ายก่อนเข้าสู่รังเอเลี่ยน ปล่อยมินิโดรนบินโฉบและกับดักระเบิดออกมาเป็นระยะเพื่อไม่ให้หน่วย Contra ผ่านเข้าสู่ใจกลาง"
+                },
+                {
+                    id: "boss-stage8-mid",
+                    name: "Embryo Alien (Sub-Boss)",
+                    role: "บอสรอง Stage 8: Alien Lair",
+                    thumb: "https://i.postimg.cc/h4J6mM32/02.jpg",
+                    bio: "ตัวอ่อนเอเลี่ยนขนาดยักษ์ที่เกาะอยู่ตามผนังถ้ำ คอยฟักไข่ปล่อยแมงมุมเอเลี่ยน (Facehuggers) จำนวนมากออกมาโจมตีตลอดเวลา"
+                },
+                {
+                    id: "boss-stage8-main",
+                    name: "Java / Emperor Alien (Final Boss)",
+                    role: "บอสใหญ่สุด Stage 8: Alien Lair",
+                    thumb: "https://i.postimg.cc/gJjyfS65/00.jpg",
+                    bio: "หัวใจเอเลี่ยนยักษ์ยึดเกาะโครงสร้างเกาะ Galuga (Emperor Alien Heart) เป็นจุดศูนย์กลางควบคุมเอเลี่ยนทั้งหมด หากทำลายหัวใจนี้ได้ เกาะ Galuga ทั้งเกาะจะเกิดการระเบิดทำลายล้างทันที"
                 }
             ]
         }
@@ -431,7 +492,7 @@
         }
     }
 
-    // --- CHARACTER SYSTEM FUNCTIONS --- //
+    // --- CHARACTER & BOSS SYSTEM FUNCTIONS --- //
     function renderCharacterGames() {
         const grid = document.getElementById('charGamesGrid');
         grid.innerHTML = '';
@@ -445,7 +506,7 @@
                 <img src="${g.cover}" class="media-thumb" alt="${g.gameName}">
                 <div class="media-info">
                     <h3 class="media-title">${g.gameName}</h3>
-                    <p class="media-sub">${g.console} (${g.characters.length} ตัวละคร)</p>
+                    <p class="media-sub">${g.console} (${g.characters.length} รายการ)</p>
                 </div>
             `;
             grid.appendChild(card);
@@ -460,7 +521,7 @@
         document.getElementById('charListByGame').style.display = 'block';
         document.getElementById('charProfileDetail').style.display = 'none';
 
-        document.getElementById('charGameTitle').innerText = `👤 ตัวละครในเกม: ${selectedGameCharData.gameName}`;
+        document.getElementById('charGameTitle').innerText = `👤 ตัวละคร & บอสในเกม: ${selectedGameCharData.gameName}`;
         
         const grid = document.getElementById('charactersGrid');
         grid.innerHTML = '';
@@ -474,7 +535,7 @@
                 <img src="${char.thumb}" class="media-thumb" alt="${char.name}">
                 <div class="media-info">
                     <h3 class="media-title">${char.name}</h3>
-                    <p class="media-sub" style="color:#38bdf8;">${char.role}</p>
+                    <p class="media-sub" style="color:#f43f5e; font-weight:500;">${char.role}</p>
                 </div>
             `;
             grid.appendChild(card);
@@ -491,11 +552,11 @@
                 <img src="${char.thumb}" style="width:180px; height:180px; object-fit:cover; border-radius:10px; border:2px solid #38bdf8;">
                 <div>
                     <h1 style="color:#38bdf8; margin:0 0 8px 0;">${char.name}</h1>
-                    <p style="color:#f43f5e; font-size:1.1rem; margin:0;"><strong>บทบาท:</strong> ${char.role}</p>
-                    <p style="color:#94a3b8; margin-top:5px;"><strong>จากเกม:</strong> ${selectedGameCharData.gameName} (${selectedGameCharData.console})</p>
+                    <p style="color:#f43f5e; font-size:1.1rem; margin:0;"><strong>สถานะ / บทบาท:</strong> ${char.role}</p>
+                    <p style="color:#94a3b8; margin-top:5px;"><strong>ปรากฏในเกม:</strong> ${selectedGameCharData.gameName} (${selectedGameCharData.console})</p>
                 </div>
             </div>
-            <h3 style="color:#f43f5e; border-left:4px solid #f43f5e; padding-left:10px;">📖 ประวัติและรายละเอียดตัวละคร</h3>
+            <h3 style="color:#f43f5e; border-left:4px solid #f43f5e; padding-left:10px;">📖 ประวัติ รายละเอียด และวิธีรับมือ</h3>
             <p style="line-height:1.8; color:#e2e8f0; font-size:1.1rem;">${char.bio}</p>
         `;
     }
