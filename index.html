@@ -60,12 +60,9 @@
             gap: 8px;
         }
 
-        .gen-title::before {
-            content: "🎮";
-            font-size: 0.9rem;
-        }
+        .gen-title::before { content: "🎮"; font-size: 0.9rem; }
 
-        /* ปุ่มเลือกเครื่องเกมทรงแคปซูลนีออน */
+        /* ปุ่มเลือกเครื่องเกม */
         .console-list { display: flex; flex-wrap: wrap; gap: 10px; }
         
         .console-btn { 
@@ -132,33 +129,76 @@
             transition: 0.2s;
         }
 
-        .alpha-btn:hover { 
-            background: #38bdf8; 
-            color: #0f172a; 
-        }
+        .alpha-btn:hover { background: #38bdf8; color: #0f172a; }
 
-        /* การ์ดบทความเกม */
-        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+        /* การ์ดบทความเกมแบบจัดเต็ม */
+        .game-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         
         .game-card { 
             background: rgba(30, 41, 59, 0.8); 
-            border-radius: 10px; 
+            border-radius: 12px; 
             padding: 20px; 
             border: 1px solid #334155;
             position: relative;
-            overflow: hidden;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .game-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: #38bdf8;
-            box-shadow: 0 0 8px #38bdf8;
+        .game-cover {
+            width: 160px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
 
-        .game-card h3 { margin: 0 0 10px 0; color: #f8fafc; font-size: 1.1rem; }
-        .game-card p { font-size: 14px; color: #94a3b8; margin: 0; line-height: 1.5; }
+        .game-info { flex: 1; min-width: 280px; }
+
+        .game-card h3 { 
+            margin: 0 0 5px 0; 
+            color: #f8fafc; 
+            font-size: 1.4rem; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .score-badge {
+            background: #f59e0b;
+            color: #0f172a;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .game-card p { font-size: 14px; color: #cbd5e1; margin: 10px 0; line-height: 1.6; }
+
+        /* แกลเลอรีภาพ Screenshot ในเกม */
+        .screenshot-grid {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .screenshot-img {
+            width: 140px;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            transition: 0.2s;
+        }
+
+        .screenshot-img:hover {
+            border-color: #f43f5e;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -256,14 +296,29 @@
         }
     ];
 
+    // ฐานข้อมูลเกม พร้อมรูปปก รูปในเกม คะแนน และบทรีวิว
     const games = [
-        { consoleId: "fc", name: "Contra", review: "เกมเดินยิงในตำนาน กดสูตร 30 ตัวขึ้นขึ้นลงลงซ้ายขวาซ้ายขวาบีเอ" },
-        { consoleId: "fc", name: "Super Mario Bros.", review: "จุดเริ่มต้นของลุงหนวดช่างประปา กราฟิกและดนตรีเป็นเอกลักษณ์" },
-        { consoleId: "sfc", name: "Chrono Trigger", review: "หนึ่งใน RPG ที่ดีที่สุดตลอดกาล ระบบข้ามเวลาและฉากจบหลากหลาย" },
-        { consoleId: "ps1", name: "Castlevania: Symphony of the Night", review: "ต้นตำรับแนว Metroidvania ระบบสำรวจปราสาทสุดลึกซึ้ง" },
-        { consoleId: "ps2", name: "Grand Theft Auto: San Andreas", review: "โลกเปิดระดับตำนาน อิสระในการเล่นสูงมาก" },
-        { consoleId: "switch", name: "Zelda: Breath of the Wild", review: "เปิดโลกการผจญภัยแบบอิสระไร้ขีดจำกัด" },
-        { consoleId: "ps5", name: "God of War Ragnarök", review: "ภาพสวยจัดเต็ม การต่อสู้ดุดัน เนื้อเรื่องเข้มข้น" }
+        { 
+            consoleId: "fc", 
+            name: "Contra", 
+            score: "10/10",
+            cover: "https://m.media-amazon.com/images/M/MV5BMGUzYjA0NzItYzk5OC00N2NmLWFiOTktMGExYzI3Nzk1MmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            screenshots: [
+                "https://upload.wikimedia.org/wikipedia/en/2/23/Contra_NES_gameplay.png",
+                "https://retrogamingstores.com/wp-content/uploads/2021/04/contra-nintendo-nes-screen-shots.png"
+            ],
+            review: "สุดยอดเกมแอ็กชันเดินยิงอันดับหนึ่งตลอดกาลบนเครื่อง Famicom/NES! ควบคุม 2 ทหารกล้าอย่าง Bill และ Lance ถล่มกองทัพเอเลี่ยน Red Falcon จุดเด่นคือเกมเพลย์ที่รวดเร็ว ดนตรีประกอบระดับตำนาน พาวเวอร์อัปปืนกระจาย (S) ที่ทรงพลังสุดๆ และระบบเล่นพร้อมกัน 2 คนที่สนุกตื่นเต้น และที่ขาดไม่ได้เลยคือสูตรลับในตำนาน 'ขึ้น ขึ้น ลง ลง ซ้าย ขวา ซ้าย ขวา บี เอ' ที่เพิ่มชีวิตเป็น 30 ตัว!" 
+        },
+        { 
+            consoleId: "fc", 
+            name: "Super Mario Bros.", 
+            score: "9.5/10",
+            cover: "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.fjm.png",
+            screenshots: [
+                "https://upload.wikimedia.org/wikipedia/en/a/a9/Super_Mario_Bros._NES_Gameplay.png"
+            ],
+            review: "จุดเริ่มต้นของลุงหนวดช่างประปา กราฟิกและดนตรีประกอบเป็นเอกลักษณ์ ออกแบบฉากได้แยบคายและเล่นได้เพลิดเพลินไม่มีเบื่อ" 
+        }
     ];
 
     let currentConsole = null;
@@ -340,9 +395,30 @@
         filtered.forEach(game => {
             const card = document.createElement('div');
             card.className = 'game-card';
+
+            // สร้าง HTML สำหรับภาพ Screenshot
+            let screenshotsHtml = '';
+            if (game.screenshots && game.screenshots.length > 0) {
+                screenshotsHtml = `
+                    <div class="screenshot-grid">
+                        ${game.screenshots.map(src => `<img src="${src}" class="screenshot-img" alt="Gameplay">`).join('')}
+                    </div>
+                `;
+            }
+
+            // รูปปก (หากไม่มีให้ใช้รูปตั้งต้น)
+            const coverImg = game.cover ? game.cover : 'https://via.placeholder.com/160x220?text=No+Cover';
+
             card.innerHTML = `
-                <h3>${game.name}</h3>
-                <p>${game.review}</p>
+                <img src="${coverImg}" class="game-cover" alt="${game.name}">
+                <div class="game-info">
+                    <h3>
+                        <span>${game.name}</span>
+                        <span class="score-badge">★ ${game.score || 'N/A'}</span>
+                    </h3>
+                    <p>${game.review}</p>
+                    ${screenshotsHtml}
+                </div>
             `;
             list.appendChild(card);
         });
