@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game System List - Game Review Hub</title>
     <!-- ฟอนต์สไตล์เกมมิ่งยุคเรโทร -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; font-family: 'Prompt', sans-serif; }
         
@@ -22,17 +22,18 @@
             background-attachment: fixed;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; }
+        .container { max-width: 1050px; margin: 0 auto; }
         
+        /* เพิ่มขนาดหัวข้อใหญ่ของเว็บ */
         h1 { 
             text-align: center; 
             font-family: 'Press Start 2P', cursive;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #38bdf8; 
-            margin-bottom: 35px; 
+            margin-bottom: 40px; 
             text-shadow: 0 0 10px rgba(56, 189, 248, 0.6), 0 0 20px rgba(56, 189, 248, 0.3);
             letter-spacing: 1px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         /* 1. หน้าหลัก (Gen List) */
@@ -40,29 +41,31 @@
             background: rgba(30, 41, 59, 0.7); 
             backdrop-filter: blur(10px);
             border-radius: 12px; 
-            padding: 20px; 
+            padding: 22px; 
             margin-bottom: 25px; 
             border: 1px solid rgba(56, 189, 248, 0.2);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
+        /* เพิ่มขนาดหัวข้อ ยุคของเครื่องเกม */
         .gen-title { 
             color: #f43f5e; 
-            font-size: 1.1rem; 
+            font-size: 1.3rem; 
             font-weight: 600; 
-            margin-bottom: 15px; 
+            margin-bottom: 16px; 
             border-bottom: 2px solid rgba(244, 63, 94, 0.3); 
             padding-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
-        .gen-title::before { content: "🎮"; font-size: 0.9rem; }
+        .gen-title::before { content: "🎮"; font-size: 1.1rem; }
 
-        .console-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .console-list { display: flex; flex-wrap: wrap; gap: 12px; }
+        /* เพิ่มขนาดปุ่มชื่อเครื่องเกม */
         .console-btn { 
             background: #0f172a; color: #e2e8f0; border: 1px solid #334155; 
-            padding: 9px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; 
+            padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 500;
             transition: all 0.2s ease-in-out;
         }
         .console-btn:hover { 
@@ -72,8 +75,8 @@
 
         /* ปุ่มย้อนกลับ */
         .back-btn { 
-            background: #f43f5e; color: #fff; border: none; padding: 10px 20px; 
-            border-radius: 6px; cursor: pointer; margin-bottom: 25px; font-weight: 600;
+            background: #f43f5e; color: #fff; border: none; padding: 12px 24px; 
+            border-radius: 6px; cursor: pointer; margin-bottom: 25px; font-weight: 600; font-size: 16px;
             box-shadow: 0 0 10px rgba(244, 63, 94, 0.4); transition: 0.2s;
         }
         .back-btn:hover { background: #e11d48; box-shadow: 0 0 15px rgba(244, 63, 94, 0.8); }
@@ -82,19 +85,19 @@
         #reviewPage, #detailPage { display: none; }
 
         .alphabet-filter { 
-            display: flex; gap: 6px; flex-wrap: wrap; margin: 20px 0; 
-            background: rgba(15, 23, 42, 0.8); padding: 12px; border-radius: 8px; border: 1px solid #334155;
+            display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0; 
+            background: rgba(15, 23, 42, 0.8); padding: 14px; border-radius: 8px; border: 1px solid #334155;
         }
         .alpha-btn { 
             border: none; background: transparent; color: #38bdf8; font-weight: bold; 
-            cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: 0.2s;
+            cursor: pointer; padding: 6px 12px; border-radius: 4px; transition: 0.2s; font-size: 15px;
         }
         .alpha-btn:hover { background: #38bdf8; color: #0f172a; }
 
-        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
         
         .game-card-summary { 
-            background: rgba(30, 41, 59, 0.8); border-radius: 12px; padding: 15px; 
+            background: rgba(30, 41, 59, 0.8); border-radius: 12px; padding: 16px; 
             border: 1px solid #334155; display: flex; gap: 15px; cursor: pointer; transition: 0.2s;
             align-items: center;
         }
@@ -103,16 +106,16 @@
         }
         
         .summary-cover { 
-            width: 120px; 
-            height: 85px; 
+            width: 130px; 
+            height: 95px; 
             object-fit: cover; 
             border-radius: 6px; 
             border: 1px solid #38bdf8; 
             flex-shrink: 0;
         }
         .summary-info { flex: 1; min-width: 0; }
-        .summary-info h3 { margin: 0 0 5px 0; color: #38bdf8; font-size: 1.1rem; }
-        .summary-info p { font-size: 13px; color: #94a3b8; margin: 5px 0; line-clamp: 2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .summary-info h3 { margin: 0 0 5px 0; color: #38bdf8; font-size: 1.25rem; font-weight: 600; }
+        .summary-info p { font-size: 14px; color: #94a3b8; margin: 6px 0 0 0; line-clamp: 2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; }
 
         /* Tag หมวดหมู่เกม */
         .genre-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
@@ -120,34 +123,42 @@
             background: rgba(56, 189, 248, 0.15); 
             color: #38bdf8; 
             border: 1px solid rgba(56, 189, 248, 0.4); 
-            font-size: 11px; 
-            padding: 2px 8px; 
+            font-size: 12px; 
+            padding: 3px 10px; 
             border-radius: 4px; 
+            font-weight: 500;
         }
 
         /* 3. หน้าเนื้อหาเกมแบบเจาะลึก (Detail Page) */
         .detail-container {
-            background: rgba(30, 41, 59, 0.9); border-radius: 12px; padding: 30px; border: 1px solid #334155;
+            background: rgba(30, 41, 59, 0.9); border-radius: 12px; padding: 35px; border: 1px solid #334155;
         }
-        .detail-header { display: flex; gap: 25px; flex-wrap: wrap; margin-bottom: 25px; border-bottom: 1px solid #475569; padding-bottom: 20px; align-items: center; }
+        .detail-header { display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 30px; border-bottom: 1px solid #475569; padding-bottom: 25px; align-items: center; }
         
         .detail-cover { 
-            width: 280px; 
-            height: 190px; 
+            width: 300px; 
+            height: 200px; 
             object-fit: cover; 
             border-radius: 8px; 
             border: 2px solid #38bdf8; 
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); 
         }
-        .detail-meta { flex: 1; min-width: 250px; }
-        .detail-title { font-size: 2rem; color: #f8fafc; margin: 0 0 10px 0; }
-        .score-badge { background: #f59e0b; color: #0f172a; padding: 4px 12px; border-radius: 6px; font-weight: bold; font-family: 'Press Start 2P', cursive; font-size: 0.9rem; display: inline-block; }
+        .detail-meta { flex: 1; min-width: 260px; }
         
-        .section-header { color: #f43f5e; font-size: 1.3rem; margin: 25px 0 10px 0; border-left: 4px solid #f43f5e; padding-left: 10px; }
-        .detail-text { font-size: 15px; color: #cbd5e1; line-height: 1.8; }
+        /* ขยายชื่อเกมในหน้ารายละเอียด */
+        .detail-title { font-size: 2.4rem; color: #f8fafc; margin: 0 0 12px 0; font-weight: 700; line-height: 1.2; }
         
-        .screenshot-grid { display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
-        .screenshot-img { width: 220px; height: 140px; object-fit: cover; border-radius: 8px; border: 1px solid #475569; }
+        /* คะแนน */
+        .score-badge { background: #f59e0b; color: #0f172a; padding: 6px 14px; border-radius: 6px; font-weight: bold; font-family: 'Press Start 2P', cursive; font-size: 1rem; display: inline-block; }
+        
+        /* ขยายหัวข้อในหน้ารีวิว */
+        .section-header { color: #f43f5e; font-size: 1.5rem; font-weight: 600; margin: 30px 0 12px 0; border-left: 5px solid #f43f5e; padding-left: 12px; letter-spacing: 0.5px; }
+        
+        /* ขยายเนื้อหาบทความ (Detail Text) */
+        .detail-text { font-size: 1.15rem; color: #e2e8f0; line-height: 1.9; font-weight: 400; }
+        
+        .screenshot-grid { display: flex; gap: 15px; margin-top: 18px; flex-wrap: wrap; }
+        .screenshot-img { width: 250px; height: 160px; object-fit: cover; border-radius: 8px; border: 1px solid #475569; }
     </style>
 </head>
 <body>
@@ -163,7 +174,7 @@
     <!-- 2. หน้าแสดงรายชื่อเกมทั้งหมดตามตัวอักษร -->
     <div id="reviewPage">
         <button class="back-btn" onclick="goHome()">← Back to Systems</button>
-        <h2 id="selectedConsoleTitle" style="color: #38bdf8; margin-top:0;"></h2>
+        <h2 id="selectedConsoleTitle" style="color: #38bdf8; margin-top:0; font-size: 1.8rem;"></h2>
         <div class="alphabet-filter" id="alphabetButtons"></div>
         <div class="game-grid" id="gameList"></div>
     </div>
@@ -346,7 +357,7 @@
         });
 
         if (filtered.length === 0) {
-            list.innerHTML = `<p style="grid-column: 1/-1; color: #64748b; text-align:center; padding: 40px 0;">ยังไม่มีรีวิวเกมในหมวดนี้</p>`;
+            list.innerHTML = `<p style="grid-column: 1/-1; color: #64748b; text-align:center; padding: 40px 0; font-size: 1.1rem;">ยังไม่มีรีวิวเกมในหมวดนี้</p>`;
             return;
         }
 
@@ -363,7 +374,7 @@
                 <img src="${game.cover}" class="summary-cover" alt="${game.name}">
                 <div class="summary-info">
                     <h3>${game.name}</h3>
-                    <div style="color:#f59e0b; font-size:12px; font-weight:bold;">★ ${game.score}</div>
+                    <div style="color:#f59e0b; font-size:13px; font-weight:bold;">★ ${game.score}</div>
                     <div class="genre-tags">${genreTagsHtml}</div>
                     <p>${game.summary}</p>
                 </div>
@@ -389,16 +400,16 @@
             `;
         }
 
-        const genreTagsHtml = (game.genres || []).map(g => `<span class="genre-tag" style="font-size:12px; padding:3px 10px;">${g}</span>`).join('');
+        const genreTagsHtml = (game.genres || []).map(g => `<span class="genre-tag" style="font-size:13px; padding:4px 12px;">${g}</span>`).join('');
 
         document.getElementById('detailContent').innerHTML = `
             <div class="detail-header">
                 <img src="${game.cover}" class="detail-cover" alt="${game.name}">
                 <div class="detail-meta">
                     <h1 class="detail-title">${game.name}</h1>
-                    <div style="margin-bottom: 12px;"><span class="score-badge">SCORE: ${game.score}</span></div>
+                    <div style="margin-bottom: 14px;"><span class="score-badge">SCORE: ${game.score}</span></div>
                     <div class="genre-tags">${genreTagsHtml}</div>
-                    <p class="detail-text" style="margin-top:15px;">${game.summary}</p>
+                    <p class="detail-text" style="margin-top:16px;">${game.summary}</p>
                 </div>
             </div>
 
