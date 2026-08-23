@@ -42,11 +42,10 @@
         .console-img {
             width: 100%;
             height: 140px;
-            object-fit: contain;
+            object-fit: cover;
             margin-bottom: 12px;
             background: #0f172a;
             border-radius: 8px;
-            padding: 10px;
         }
 
         .console-name { font-size: 1.2rem; font-weight: bold; color: #f8fafc; margin-bottom: 4px; }
@@ -99,48 +98,36 @@
 </div>
 
 <script>
-    // 1. ข้อมูลเครื่องเกมตั้งแต่ยุค Famicom ถึงปัจจุบัน พร้อมรูปภาพ
+    // 1. ข้อมูลเครื่องเกมและ URL รูปภาพแบบ Hotlink-safe
     const consoles = [
-        { id: "fc", name: "Famicom / NES", era: "ยุค 8-bit (1983)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Famicom-Console-Set.png/320px-Famicom-Console-Set.png" },
-        { id: "sfc", name: "Super Famicom", era: "ยุค 16-bit (1990)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/SNES-Mod1-Console-Set.png/320px-SNES-Mod1-Console-Set.png" },
-        { id: "ps1", name: "PlayStation 1", era: "ยุค 32-bit (1994)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/PSX-Console-wController.png/320px-PSX-Console-wController.png" },
-        { id: "ps2", name: "PlayStation 2", era: "ยุคทองคอนโซล (2000)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/PS2-Versions.png/320px-PS2-Versions.png" },
-        { id: "gba", name: "Game Boy Advance", era: "เครื่องพกพายอดฮิต (2001)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Nintendo-Game-Boy-Advance-Purple-FL.png/320px-Nintendo-Game-Boy-Advance-Purple-FL.png" },
-        { id: "ps3", name: "PlayStation 3", era: "ยุคกราฟิก HD (2006)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/PS3-Fat-Console-Set.png/320px-PS3-Fat-Console-Set.png" },
-        { id: "ps4", name: "PlayStation 4", era: "ยุคโมเดิร์น (2013)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/PS4-Console-wController.png/320px-PS4-Console-wController.png" },
-        { id: "switch", name: "Nintendo Switch", era: "ไฮบริดพกพา (2017)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Nintendo_Switch_Console_and_Dock.png/320px-Nintendo_Switch_Console_and_Dock.png" },
-        { id: "ps5", name: "PlayStation 5", era: "ยุคปัจจุบัน (2020)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/320px-PlayStation_5_and_DualSense_with_transparent_background.png" },
-        { id: "pc", name: "PC Gaming", era: "ทุกยุคสมัย", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Vector_diagram.svg/320px-Desktop_computer_clipart_-_Vector_diagram.svg.png" }
+        { id: "fc", name: "Famicom / NES", era: "ยุค 8-bit (1983)", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80" },
+        { id: "sfc", name: "Super Famicom", era: "ยุค 16-bit (1990)", img: "https://images.unsplash.com/photo-1531525645387-7f14be1bdbbd?w=400&q=80" },
+        { id: "ps1", name: "PlayStation 1", era: "ยุค 32-bit (1994)", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&q=80" },
+        { id: "ps2", name: "PlayStation 2", era: "ยุคทองคอนโซล (2000)", img: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=400&q=80" },
+        { id: "gba", name: "Game Boy Advance", era: "เครื่องพกพายอดฮิต (2001)", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80" },
+        { id: "ps3", name: "PlayStation 3", era: "ยุคกราฟิก HD (2006)", img: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&q=80" },
+        { id: "ps4", name: "PlayStation 4", era: "ยุคโมเดิร์น (2013)", img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&q=80" },
+        { id: "switch", name: "Nintendo Switch", era: "ไฮบริดพกพา (2017)", img: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400&q=80" },
+        { id: "ps5", name: "PlayStation 5", era: "ยุคปัจจุบัน (2020)", img: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&q=80" },
+        { id: "pc", name: "PC Gaming", era: "ทุกยุคสมัย", img: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&q=80" }
     ];
 
-    // 2. ฐานข้อมูลเกม (คุณสามารถมาเพิ่มชื่อเกมและรีวิวตามคอนโซลได้ตรงนี้)
+    // 2. ฐานข้อมูลเกม
     const games = [
-        // Famicom
         { consoleId: "fc", name: "Contra", review: "เกมเดินยิงในตำนาน กดสูตร 30 ตัวขึ้นขึ้นลงลงซ้ายขวาซ้ายขวาบีเอ" },
         { consoleId: "fc", name: "Super Mario Bros.", review: "จุดเริ่มต้นของลุงหนวดช่างประปา กราฟิกและดนตรีประกอบเป็นเอกลักษณ์" },
-        
-        // Super Famicom
         { consoleId: "sfc", name: "Chrono Trigger", review: "หนึ่งใน RPG ที่ดีที่สุดตลอดกาล ระบบข้ามเวลาและฉากจบหลากหลาย" },
         { consoleId: "sfc", name: "Mega Man X", review: "การปฏิวัติร็อคแมนสู่ยุคใหม่ เกราะเสริมและไต่กำแพงสุดมันส์" },
-
-        // PS1
         { consoleId: "ps1", name: "Castlevania: Symphony of the Night", review: "ต้นตำรับแนว Metroidvania ฉากซิมโฟนีและระบบสำรวจปราสาทสุดลึกซึ้ง" },
         { consoleId: "ps1", name: "Final Fantasy VII", review: "ตำนาน RPG เปลี่ยนผ่านสู่โลก 3D เรื่องราวของ Cloud และ Sephiroth" },
-
-        // PS2
         { consoleId: "ps2", name: "Grand Theft Auto: San Andreas", review: "โลกเปิดระดับตำนาน ภารกิจหลากหลาย และอิสระในการเล่นยุค PS2" },
-
-        // Switch
         { consoleId: "switch", name: "Zelda: Breath of the Wild", review: "เปิดโลกการผจญภัยแบบอิสระไร้ขีดจำกัด หนึ่งในเกมที่ดีที่สุดในโลก" },
-
-        // PS5
         { consoleId: "ps5", name: "God of War Ragnarök", review: "ภาพสวยจัดเต็ม ใช้จอย DualSense ได้ทรงพลัง การต่อสู้ดุดัน" }
     ];
 
     let currentConsole = null;
     let currentLetter = 'all';
 
-    // สร้างการ์ดเลือกเครื่องเกมในหน้าแรก
     function initConsoles() {
         const container = document.getElementById('consoleContainer');
         container.innerHTML = '';
@@ -157,7 +144,6 @@
         });
     }
 
-    // เลือกเครื่องเกม -> สลับไปหน้าบทความ
     function selectConsole(consoleId, consoleName) {
         currentConsole = consoleId;
         currentLetter = 'all';
@@ -169,13 +155,11 @@
         renderGames();
     }
 
-    // กลับหน้าหลัก
     function goHome() {
         document.getElementById('homePage').style.display = 'block';
         document.getElementById('reviewPage').style.display = 'none';
     }
 
-    // ปุ่ม A-Z
     function initAlphabet() {
         const container = document.getElementById('alphabetButtons');
         let html = `<button class="alpha-btn" onclick="filterLetter('all')">ทั้งหมด</button>`;
@@ -191,7 +175,6 @@
         renderGames();
     }
 
-    // แสดงรายชื่อเกมตามเครื่องและตัวอักษร
     function renderGames() {
         const list = document.getElementById('gameList');
         list.innerHTML = '';
@@ -221,7 +204,6 @@
         });
     }
 
-    // เริ่มทำงาน
     initConsoles();
 </script>
 
