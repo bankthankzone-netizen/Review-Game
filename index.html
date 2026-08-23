@@ -14,7 +14,6 @@
             background-color: #0b0f19; 
             color: #f8fafc; 
             padding: 30px 20px;
-            /* ฉากหลังลายตาราง Grid สไตล์ไซเบอร์และพิกเซล */
             background-image: 
                 radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15), transparent 70%),
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -25,7 +24,6 @@
 
         .container { max-width: 1000px; margin: 0 auto; }
         
-        /* หัวข้อเว็บสไตล์เรโทรพิกเซล */
         h1 { 
             text-align: center; 
             font-family: 'Press Start 2P', cursive;
@@ -37,7 +35,7 @@
             line-height: 1.4;
         }
 
-        /* กล่องหมวด Gen สไตล์การ์ดเกมมิ่ง */
+        /* 1. หน้าหลัก (Gen List) */
         .gen-section { 
             background: rgba(30, 41, 59, 0.7); 
             backdrop-filter: blur(10px);
@@ -59,164 +57,92 @@
             align-items: center;
             gap: 8px;
         }
-
         .gen-title::before { content: "🎮"; font-size: 0.9rem; }
 
-        /* ปุ่มเลือกเครื่องเกม */
         .console-list { display: flex; flex-wrap: wrap; gap: 10px; }
-        
         .console-btn { 
-            background: #0f172a; 
-            color: #e2e8f0; 
-            border: 1px solid #334155; 
-            padding: 9px 18px; 
-            border-radius: 6px; 
-            cursor: pointer; 
-            font-size: 14px; 
+            background: #0f172a; color: #e2e8f0; border: 1px solid #334155; 
+            padding: 9px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; 
             transition: all 0.2s ease-in-out;
         }
-
         .console-btn:hover { 
-            background: #38bdf8; 
-            color: #0f172a; 
-            font-weight: bold;
-            border-color: #38bdf8;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
-            transform: translateY(-2px);
+            background: #38bdf8; color: #0f172a; font-weight: bold; border-color: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.8); transform: translateY(-2px);
         }
 
-        /* หน้าแสดงรีวิวเกม */
-        #reviewPage { display: none; }
-        
+        /* ปุ่มย้อนกลับ */
         .back-btn { 
-            background: #f43f5e; 
-            color: #fff; 
-            border: none; 
-            padding: 10px 20px; 
-            border-radius: 6px; 
-            cursor: pointer; 
-            margin-bottom: 25px;
-            font-weight: 600;
-            box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
-            transition: 0.2s;
+            background: #f43f5e; color: #fff; border: none; padding: 10px 20px; 
+            border-radius: 6px; cursor: pointer; margin-bottom: 25px; font-weight: 600;
+            box-shadow: 0 0 10px rgba(244, 63, 94, 0.4); transition: 0.2s;
         }
+        .back-btn:hover { background: #e11d48; box-shadow: 0 0 15px rgba(244, 63, 94, 0.8); }
 
-        .back-btn:hover { 
-            background: #e11d48;
-            box-shadow: 0 0 15px rgba(244, 63, 94, 0.8);
-        }
+        /* 2. หน้าบทความ/รายชื่อเกม */
+        #reviewPage, #detailPage { display: none; }
 
-        /* เมนูหมวดตัวอักษร A-Z */
         .alphabet-filter { 
-            display: flex; 
-            gap: 6px; 
-            flex-wrap: wrap; 
-            margin: 20px 0; 
-            background: rgba(15, 23, 42, 0.8); 
-            padding: 12px; 
-            border-radius: 8px;
-            border: 1px solid #334155;
+            display: flex; gap: 6px; flex-wrap: wrap; margin: 20px 0; 
+            background: rgba(15, 23, 42, 0.8); padding: 12px; border-radius: 8px; border: 1px solid #334155;
         }
-
         .alpha-btn { 
-            border: none; 
-            background: transparent; 
-            color: #38bdf8; 
-            font-weight: bold; 
-            cursor: pointer; 
-            padding: 5px 10px; 
-            border-radius: 4px;
-            transition: 0.2s;
+            border: none; background: transparent; color: #38bdf8; font-weight: bold; 
+            cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: 0.2s;
         }
-
         .alpha-btn:hover { background: #38bdf8; color: #0f172a; }
 
-        /* การ์ดบทความเกมแบบจัดเต็ม */
-        .game-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        .game-card { 
-            background: rgba(30, 41, 59, 0.8); 
-            border-radius: 12px; 
-            padding: 20px; 
-            border: 1px solid #334155;
-            position: relative;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+        .game-card-summary { 
+            background: rgba(30, 41, 59, 0.8); border-radius: 12px; padding: 20px; 
+            border: 1px solid #334155; display: flex; gap: 15px; cursor: pointer; transition: 0.2s;
         }
-
-        .game-cover {
-            width: 160px;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #38bdf8;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        .game-card-summary:hover {
+            border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
         }
+        .summary-cover { width: 90px; height: 120px; object-fit: cover; border-radius: 6px; border: 1px solid #38bdf8; }
+        .summary-info h3 { margin: 0 0 5px 0; color: #38bdf8; font-size: 1.1rem; }
+        .summary-info p { font-size: 13px; color: #94a3b8; margin: 5px 0; line-clamp: 2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        .game-info { flex: 1; min-width: 280px; }
-
-        .game-card h3 { 
-            margin: 0 0 5px 0; 
-            color: #f8fafc; 
-            font-size: 1.4rem; 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
+        /* 3. หน้าเนื้อหาเกมแบบเจาะลึก (Detail Page) */
+        .detail-container {
+            background: rgba(30, 41, 59, 0.9); border-radius: 12px; padding: 30px; border: 1px solid #334155;
         }
-
-        .score-badge {
-            background: #f59e0b;
-            color: #0f172a;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        .game-card p { font-size: 14px; color: #cbd5e1; margin: 10px 0; line-height: 1.6; }
-
-        /* แกลเลอรีภาพ Screenshot ในเกม */
-        .screenshot-grid {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .screenshot-img {
-            width: 140px;
-            height: 95px;
-            object-fit: cover;
-            border-radius: 6px;
-            border: 1px solid #475569;
-            transition: 0.2s;
-        }
-
-        .screenshot-img:hover {
-            border-color: #f43f5e;
-            transform: scale(1.05);
-        }
+        .detail-header { display: flex; gap: 25px; flex-wrap: wrap; margin-bottom: 25px; border-bottom: 1px solid #475569; padding-bottom: 20px; }
+        .detail-cover { width: 180px; height: 250px; object-fit: cover; border-radius: 8px; border: 2px solid #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+        .detail-meta { flex: 1; min-width: 250px; }
+        .detail-title { font-size: 2rem; color: #f8fafc; margin: 0 0 10px 0; }
+        .score-badge { background: #f59e0b; color: #0f172a; padding: 4px 12px; border-radius: 6px; font-weight: bold; font-family: 'Press Start 2P', cursive; font-size: 0.9rem; }
+        
+        .section-header { color: #f43f5e; font-size: 1.3rem; margin: 25px 0 10px 0; border-left: 4px solid #f43f5e; padding-left: 10px; }
+        .detail-text { font-size: 15px; color: #cbd5e1; line-height: 1.8; }
+        
+        .screenshot-grid { display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
+        .screenshot-img { width: 220px; height: 140px; object-fit: cover; border-radius: 8px; border: 1px solid #475569; }
     </style>
 </head>
 <body>
 
 <div class="container">
 
-    <!-- หน้าหลัก: รายชื่อเครื่องเกมตาม Gen -->
+    <!-- 1. หน้าหลัก: รายชื่อเครื่องเกมตาม Gen -->
     <div id="homePage">
         <h1>GAME SYSTEM LIST</h1>
         <div id="genContainer"></div>
     </div>
 
-    <!-- หน้าแสดงบทความรีวิว -->
+    <!-- 2. หน้าแสดงรายชื่อเกมทั้งหมดตามตัวอักษร -->
     <div id="reviewPage">
         <button class="back-btn" onclick="goHome()">← Back to Systems</button>
         <h2 id="selectedConsoleTitle" style="color: #38bdf8; margin-top:0;"></h2>
         <div class="alphabet-filter" id="alphabetButtons"></div>
         <div class="game-grid" id="gameList"></div>
+    </div>
+
+    <!-- 3. หน้ารายละเอียดเนื้อเรื่องและ Lore เกมแบบเจาะลึก -->
+    <div id="detailPage">
+        <button class="back-btn" onclick="goBackToGameList()">← Back to Game List</button>
+        <div class="detail-container" id="detailContent"></div>
     </div>
 
 </div>
@@ -233,72 +159,18 @@
             ]
         },
         {
-            title: "Eighth Generation (2012-2019)",
-            consoles: [
-                { id: "ps4", name: "PlayStation 4" },
-                { id: "xboxone", name: "Xbox One" },
-                { id: "wiiu", name: "Wii U" },
-                { id: "3ds", name: "Nintendo 3DS" },
-                { id: "psvita", name: "PlayStation Vita" }
-            ]
-        },
-        {
-            title: "Seventh Generation (2005-2015)",
-            consoles: [
-                { id: "ps3", name: "PlayStation 3" },
-                { id: "xbox360", name: "Xbox 360" },
-                { id: "wii", name: "Wii" },
-                { id: "ds", name: "Nintendo DS" },
-                { id: "psp", name: "PSP" }
-            ]
-        },
-        {
-            title: "Sixth Generation (1998-2009)",
-            consoles: [
-                { id: "ps2", name: "PlayStation 2" },
-                { id: "gamecube", name: "GameCube" },
-                { id: "xbox", name: "Xbox" },
-                { id: "dreamcast", name: "Dreamcast" },
-                { id: "gba", name: "Game Boy Advance" }
-            ]
-        },
-        {
-            title: "Fifth Generation (1993-2001)",
-            consoles: [
-                { id: "ps1", name: "PlayStation" },
-                { id: "n64", name: "Nintendo 64" },
-                { id: "saturn", name: "Sega Saturn" },
-                { id: "gbc", name: "Game Boy Color" }
-            ]
-        },
-        {
-            title: "Fourth Generation (1987-1995)",
-            consoles: [
-                { id: "sfc", name: "Super Nintendo (SFC)" },
-                { id: "genesis", name: "Sega Genesis / Mega Drive" },
-                { id: "gb", name: "Game Boy" }
-            ]
-        },
-        {
             title: "Third Generation (1983-1990)",
             consoles: [
                 { id: "fc", name: "NES / Famicom" },
-                { id: "master", name: "Sega Master System" },
-                { id: "atari7800", name: "Atari 7800" }
-            ]
-        },
-        {
-            title: "First & Second Generation (1972-1983)",
-            consoles: [
-                { id: "atari2600", name: "Atari 2600" },
-                { id: "odyssey", name: "Magnavox Odyssey" }
+                { id: "master", name: "Sega Master System" }
             ]
         }
     ];
 
-    // ฐานข้อมูลเกม พร้อมรูปปก รูปในเกม คะแนน และบทรีวิว
+    // ฐานข้อมูลบทความรีวิวเจาะลึก
     const games = [
         { 
+            id: "contra-fc",
             consoleId: "fc", 
             name: "Contra", 
             score: "10/10",
@@ -307,17 +179,10 @@
                 "https://upload.wikimedia.org/wikipedia/en/2/23/Contra_NES_gameplay.png",
                 "https://retrogamingstores.com/wp-content/uploads/2021/04/contra-nintendo-nes-screen-shots.png"
             ],
-            review: "สุดยอดเกมแอ็กชันเดินยิงอันดับหนึ่งตลอดกาลบนเครื่อง Famicom/NES! ควบคุม 2 ทหารกล้าอย่าง Bill และ Lance ถล่มกองทัพเอเลี่ยน Red Falcon จุดเด่นคือเกมเพลย์ที่รวดเร็ว ดนตรีประกอบระดับตำนาน พาวเวอร์อัปปืนกระจาย (S) ที่ทรงพลังสุดๆ และระบบเล่นพร้อมกัน 2 คนที่สนุกตื่นเต้น และที่ขาดไม่ได้เลยคือสูตรลับในตำนาน 'ขึ้น ขึ้น ลง ลง ซ้าย ขวา ซ้าย ขวา บี เอ' ที่เพิ่มชีวิตเป็น 30 ตัว!" 
-        },
-        { 
-            consoleId: "fc", 
-            name: "Super Mario Bros.", 
-            score: "9.5/10",
-            cover: "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.fjm.png",
-            screenshots: [
-                "https://upload.wikimedia.org/wikipedia/en/a/a9/Super_Mario_Bros._NES_Gameplay.png"
-            ],
-            review: "จุดเริ่มต้นของลุงหนวดช่างประปา กราฟิกและดนตรีประกอบเป็นเอกลักษณ์ ออกแบบฉากได้แยบคายและเล่นได้เพลิดเพลินไม่มีเบื่อ" 
+            summary: "สุดยอดเกมเดินยิงระดับตำนาน การต่อสู้ของ 2 ทหารกล้าถล่มกองทัพเอเลี่ยน!",
+            story: "เรื่องราวเกิดขึ้นในปี ค.ศ. 2633 องค์กรก่อการร้ายต่างดาวในนาม 'Red Falcon' ได้แอบเข้ามายึดครองเกาะ Galuga ใกล้กับอเมริกาใต้ และตั้งฐานปฏิบัติการเพื่อเตรียมล้างเผ่าพันธุ์มนุษยชาติ กองกำลังทหารพิเศษ Earth Marine Corp จึงได้ส่งสองยอดหน่วยรบพิเศษ 'Contra' นามว่า Bill Rizer (Mad Dog) และ Lance Bean (Scorpion) เข้าสู่สมรภูมิเพื่อทำลายล้างพวกมันให้สิ้นซาก",
+            lore: "คำว่า 'Contra' ในจักรวาลของเกม ไม่ได้หมายถึงชื่อตัวละคร แต่เป็น 'รหัสยศพิเศษ' ที่มอบให้กับทหารที่มีจิตวิญญาณแห่งการรบอันเหนือมนุษย์ มีความสามารถในการใช้อาวุธทุกรูปแบบ และสามารถเอาชีวิตรอดในสภาพแวดล้อมที่โหดร้ายที่สุดได้ ตัวละคร Bill และ Lance ได้รับแรงบันดาลใจด้านรูปร่างมาจากดารานักบู๊ฮอลลีวูดอย่าง Arnold Schwarzenegger และ Sylvester Stallone ในยุค 80s",
+            gameplayReview: "เกมเพลย์เป็นแนว Action Side-Scrolling ที่ผสมผสานฉากการเล่นทั้งแบบมุมมองด้านข้างและมุมมอง 3D ด้านหลัง (ในฉากฐานทัพ) อาวุธที่มีให้เก็บหลากหลาย โดยเฉพาะ 'S' (Spread Gun) ที่ยิงกระสุนกระจายเป็นพัดซึ่งเป็นอาวุธยอดฮิต ตัวเกมมีความท้าทายสูงมาก พลาดโดนยิงครั้งเดียวเสียชีวิตทันที นำไปสู่สูตรกดในตำนาน Konami Code 'ขึ้น ขึ้น ลง ลง ซ้าย ขวา ซ้าย ขวา บี เอ' เพื่อเพิ่มชีวิตเป็น 30 ตัว"
         }
     ];
 
@@ -348,7 +213,8 @@
         currentLetter = 'all';
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('reviewPage').style.display = 'block';
-        document.getElementById('selectedConsoleTitle').innerText = `Reviews for ${consoleName}`;
+        document.getElementById('detailPage').style.display = 'none';
+        document.getElementById('selectedConsoleTitle').innerText = `Games for ${consoleName}`;
         
         initAlphabet();
         renderGames();
@@ -357,6 +223,13 @@
     function goHome() {
         document.getElementById('homePage').style.display = 'block';
         document.getElementById('reviewPage').style.display = 'none';
+        document.getElementById('detailPage').style.display = 'none';
+    }
+
+    function goBackToGameList() {
+        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('reviewPage').style.display = 'block';
+        document.getElementById('detailPage').style.display = 'none';
     }
 
     function initAlphabet() {
@@ -374,6 +247,7 @@
         renderGames();
     }
 
+    // แสดงการ์ดสรุปรายชื่อเกม
     function renderGames() {
         const list = document.getElementById('gameList');
         list.innerHTML = '';
@@ -394,34 +268,60 @@
 
         filtered.forEach(game => {
             const card = document.createElement('div');
-            card.className = 'game-card';
-
-            // สร้าง HTML สำหรับภาพ Screenshot
-            let screenshotsHtml = '';
-            if (game.screenshots && game.screenshots.length > 0) {
-                screenshotsHtml = `
-                    <div class="screenshot-grid">
-                        ${game.screenshots.map(src => `<img src="${src}" class="screenshot-img" alt="Gameplay">`).join('')}
-                    </div>
-                `;
-            }
-
-            // รูปปก (หากไม่มีให้ใช้รูปตั้งต้น)
-            const coverImg = game.cover ? game.cover : 'https://via.placeholder.com/160x220?text=No+Cover';
+            card.className = 'game-card-summary';
+            card.onclick = () => openGameDetail(game.id);
 
             card.innerHTML = `
-                <img src="${coverImg}" class="game-cover" alt="${game.name}">
-                <div class="game-info">
-                    <h3>
-                        <span>${game.name}</span>
-                        <span class="score-badge">★ ${game.score || 'N/A'}</span>
-                    </h3>
-                    <p>${game.review}</p>
-                    ${screenshotsHtml}
+                <img src="${game.cover}" class="summary-cover" alt="${game.name}">
+                <div class="summary-info">
+                    <h3>${game.name}</h3>
+                    <div style="color:#f59e0b; font-size:12px; font-weight:bold;">★ ${game.score}</div>
+                    <p>${game.summary}</p>
                 </div>
             `;
             list.appendChild(card);
         });
+    }
+
+    // เปิดหน้ารายละเอียดเกมแบบเจาะลึก
+    function openGameDetail(gameId) {
+        const game = games.find(g => g.id === gameId);
+        if(!game) return;
+
+        document.getElementById('reviewPage').style.display = 'none';
+        document.getElementById('detailPage').style.display = 'block';
+
+        let screenshotsHtml = '';
+        if (game.screenshots && game.screenshots.length > 0) {
+            screenshotsHtml = `
+                <div class="section-header">GAMEPLAY SCREENSHOTS</div>
+                <div class="screenshot-grid">
+                    ${game.screenshots.map(src => `<img src="${src}" class="screenshot-img" alt="Gameplay">`).join('')}
+                </div>
+            `;
+        }
+
+        document.getElementById('detailContent').innerHTML = `
+            <div class="detail-header">
+                <img src="${game.cover}" class="detail-cover" alt="${game.name}">
+                <div class="detail-meta">
+                    <h1 class="detail-title">${game.name}</h1>
+                    <span class="score-badge">SCORE: ${game.score}</span>
+                    <p class="detail-text" style="margin-top:15px;">${game.summary}</p>
+                </div>
+            </div>
+
+            <div class="section-header">📖 STORY (เนื้อเรื่อง)</div>
+            <p class="detail-text">${game.story}</p>
+
+            <div class="section-header">🔮 LORE & TRIVIA (เบื้องหลังและตำนาน)</div>
+            <p class="detail-text">${game.lore}</p>
+
+            <div class="section-header">🎮 GAMEPLAY REVIEW (รีวิวระบบเกม)</div>
+            <p class="detail-text">${game.gameplayReview}</p>
+
+            ${screenshotsHtml}
+        `;
     }
 
     initGenerations();
