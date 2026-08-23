@@ -3,69 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Review Hub - เลือกเครื่องเกม</title>
+    <title>Game System List - Game Review Hub</title>
     <style>
-        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { margin: 0; background-color: #0f172a; color: #f8fafc; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; }
         
-        header { text-align: center; margin-bottom: 30px; }
-        h1 { color: #38bdf8; font-size: 2.2rem; margin-bottom: 10px; }
-        p.subtitle { color: #94a3b8; font-size: 1.1rem; }
+        h1 { text-align: center; color: #38bdf8; margin-bottom: 30px; }
+        .gen-section { background: #1e293b; border-radius: 8px; padding: 15px 20px; margin-bottom: 20px; border-left: 4px solid #38bdf8; }
+        .gen-title { color: #38bdf8; font-size: 1.2rem; font-weight: bold; margin-bottom: 12px; border-bottom: 1px solid #334155; padding-bottom: 5px; }
+        
+        .console-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .console-btn { background: #334155; color: #f8fafc; border: none; padding: 8px 14px; border-radius: 5px; cursor: pointer; font-size: 14px; transition: 0.2s; }
+        .console-btn:hover { background: #38bdf8; color: #0f172a; font-weight: bold; }
 
-        /* ส่วนแสดงเครื่องเกม (Console Grid) */
-        .console-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .console-card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            border: 2px solid #334155;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .console-card:hover {
-            transform: translateY(-5px);
-            border-color: #38bdf8;
-            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
-        }
-
-        .console-img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            margin-bottom: 12px;
-            background: #0f172a;
-            border-radius: 8px;
-        }
-
-        .console-name { font-size: 1.2rem; font-weight: bold; color: #f8fafc; margin-bottom: 4px; }
-        .console-era { font-size: 0.85rem; color: #38bdf8; font-weight: 600; }
-
-        /* หน้าหมวดหมู่รีวิว (เมื่อกดเลือกเครื่อง) */
+        /* หน้าแสดงรีวิวเกม */
         #reviewPage { display: none; }
-        .back-btn {
-            background: #334155; color: #fff; border: none; padding: 10px 18px;
-            border-radius: 6px; cursor: pointer; font-size: 1rem; margin-bottom: 20px;
-            transition: 0.2s;
-        }
+        .back-btn { background: #334155; color: #fff; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-bottom: 20px; }
         .back-btn:hover { background: #38bdf8; color: #0f172a; }
 
-        /* ปุ่ม A-Z */
-        .alphabet-filter { display: flex; gap: 6px; flex-wrap: wrap; margin: 20px 0; background: #1e293b; padding: 12px; border-radius: 8px; }
-        .alpha-btn { border: none; background: transparent; color: #38bdf8; font-weight: bold; cursor: pointer; padding: 4px 8px; font-size: 15px; }
+        .alphabet-filter { display: flex; gap: 6px; flex-wrap: wrap; margin: 15px 0; background: #1e293b; padding: 10px; border-radius: 6px; }
+        .alpha-btn { border: none; background: transparent; color: #38bdf8; font-weight: bold; cursor: pointer; padding: 4px 8px; }
         .alpha-btn:hover { color: #fff; text-decoration: underline; }
 
-        /* รายชื่อเกม */
         .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
         .game-card { background: #1e293b; border-radius: 8px; padding: 15px; border-left: 4px solid #38bdf8; }
         .game-card h3 { margin: 0 0 8px 0; color: #f8fafc; }
@@ -76,21 +36,16 @@
 
 <div class="container">
 
-    <!-- ================= หน้าหลัก: เลือกเครื่องเกม ================= -->
+    <!-- หน้าหลัก: รายชื่อเครื่องเกมตาม Gen -->
     <div id="homePage">
-        <header>
-            <h1>🎮 Game Review Hub</h1>
-            <p class="subtitle">เลือกรุ่นเครื่องเกมที่คุณชื่นชอบ ตั้งแต่อดีตจนถึงปัจจุบัน เพื่อชมรีวิว</p>
-        </header>
-
-        <div class="console-grid" id="consoleContainer"></div>
+        <h1>🎮 Game System List</h1>
+        <div id="genContainer"></div>
     </div>
 
-    <!-- ================= หน้าแสดงรีวิวเกม ================= -->
+    <!-- หน้าแสดงบทความรีวิว -->
     <div id="reviewPage">
         <button class="back-btn" onclick="goHome()">← กลับไปเลือกเครื่องเกม</button>
         <h2 id="selectedConsoleTitle" style="color: #38bdf8; margin-top:0;"></h2>
-
         <div class="alphabet-filter" id="alphabetButtons"></div>
         <div class="game-grid" id="gameList"></div>
     </div>
@@ -98,49 +53,111 @@
 </div>
 
 <script>
-    // 1. ข้อมูลเครื่องเกมและ URL รูปภาพแบบ Hotlink-safe
-    const consoles = [
-        { id: "fc", name: "Famicom / NES", era: "ยุค 8-bit (1983)", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80" },
-        { id: "sfc", name: "Super Famicom", era: "ยุค 16-bit (1990)", img: "https://images.unsplash.com/photo-1531525645387-7f14be1bdbbd?w=400&q=80" },
-        { id: "ps1", name: "PlayStation 1", era: "ยุค 32-bit (1994)", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&q=80" },
-        { id: "ps2", name: "PlayStation 2", era: "ยุคทองคอนโซล (2000)", img: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=400&q=80" },
-        { id: "gba", name: "Game Boy Advance", era: "เครื่องพกพายอดฮิต (2001)", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80" },
-        { id: "ps3", name: "PlayStation 3", era: "ยุคกราฟิก HD (2006)", img: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&q=80" },
-        { id: "ps4", name: "PlayStation 4", era: "ยุคโมเดิร์น (2013)", img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&q=80" },
-        { id: "switch", name: "Nintendo Switch", era: "ไฮบริดพกพา (2017)", img: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400&q=80" },
-        { id: "ps5", name: "PlayStation 5", era: "ยุคปัจจุบัน (2020)", img: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&q=80" },
-        { id: "pc", name: "PC Gaming", era: "ทุกยุคสมัย", img: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&q=80" }
+    // แยกหมวดหมู่ตาม Generation
+    const generations = [
+        {
+            title: "Active Platforms / Current Gen",
+            consoles: [
+                { id: "pc", name: "PC" },
+                { id: "ps5", name: "PlayStation 5" },
+                { id: "xboxsx", name: "Xbox Series X/S" },
+                { id: "switch", name: "Nintendo Switch" }
+            ]
+        },
+        {
+            title: "Eighth Generation (2012-2019)",
+            consoles: [
+                { id: "ps4", name: "PlayStation 4" },
+                { id: "xboxone", name: "Xbox One" },
+                { id: "wiiu", name: "Wii U" },
+                { id: "3ds", name: "Nintendo 3DS" },
+                { id: "psvita", name: "PlayStation Vita" }
+            ]
+        },
+        {
+            title: "Seventh Generation (2005-2015)",
+            consoles: [
+                { id: "ps3", name: "PlayStation 3" },
+                { id: "xbox360", name: "Xbox 360" },
+                { id: "wii", name: "Wii" },
+                { id: "ds", name: "Nintendo DS" },
+                { id: "psp", name: "PSP" }
+            ]
+        },
+        {
+            title: "Sixth Generation (1998-2009)",
+            consoles: [
+                { id: "ps2", name: "PlayStation 2" },
+                { id: "gamecube", name: "GameCube" },
+                { id: "xbox", name: "Xbox" },
+                { id: "dreamcast", name: "Dreamcast" },
+                { id: "gba", name: "Game Boy Advance" }
+            ]
+        },
+        {
+            title: "Fifth Generation (1993-2001)",
+            consoles: [
+                { id: "ps1", name: "PlayStation" },
+                { id: "n64", name: "Nintendo 64" },
+                { id: "saturn", name: "Sega Saturn" },
+                { id: "gbc", name: "Game Boy Color" }
+            ]
+        },
+        {
+            title: "Fourth Generation (1987-1995)",
+            consoles: [
+                { id: "sfc", name: "Super Nintendo (SFC)" },
+                { id: "genesis", name: "Sega Genesis / Mega Drive" },
+                { id: "gb", name: "Game Boy" }
+            ]
+        },
+        {
+            title: "Third Generation (1983-1990)",
+            consoles: [
+                { id: "fc", name: "NES / Famicom" },
+                { id: "master", name: "Sega Master System" },
+                { id: "atari7800", name: "Atari 7800" }
+            ]
+        },
+        {
+            title: "First & Second Generation (1972-1983)",
+            consoles: [
+                { id: "atari2600", name: "Atari 2600" },
+                { id: "odyssey", name: "Magnavox Odyssey" }
+            ]
+        }
     ];
 
-    // 2. ฐานข้อมูลเกม
+    // ฐานข้อมูลเกม
     const games = [
         { consoleId: "fc", name: "Contra", review: "เกมเดินยิงในตำนาน กดสูตร 30 ตัวขึ้นขึ้นลงลงซ้ายขวาซ้ายขวาบีเอ" },
-        { consoleId: "fc", name: "Super Mario Bros.", review: "จุดเริ่มต้นของลุงหนวดช่างประปา กราฟิกและดนตรีประกอบเป็นเอกลักษณ์" },
+        { consoleId: "fc", name: "Super Mario Bros.", review: "จุดเริ่มต้นของลุงหนวดช่างประปา กราฟิกและดนตรีเป็นเอกลักษณ์" },
         { consoleId: "sfc", name: "Chrono Trigger", review: "หนึ่งใน RPG ที่ดีที่สุดตลอดกาล ระบบข้ามเวลาและฉากจบหลากหลาย" },
-        { consoleId: "sfc", name: "Mega Man X", review: "การปฏิวัติร็อคแมนสู่ยุคใหม่ เกราะเสริมและไต่กำแพงสุดมันส์" },
-        { consoleId: "ps1", name: "Castlevania: Symphony of the Night", review: "ต้นตำรับแนว Metroidvania ฉากซิมโฟนีและระบบสำรวจปราสาทสุดลึกซึ้ง" },
-        { consoleId: "ps1", name: "Final Fantasy VII", review: "ตำนาน RPG เปลี่ยนผ่านสู่โลก 3D เรื่องราวของ Cloud และ Sephiroth" },
-        { consoleId: "ps2", name: "Grand Theft Auto: San Andreas", review: "โลกเปิดระดับตำนาน ภารกิจหลากหลาย และอิสระในการเล่นยุค PS2" },
-        { consoleId: "switch", name: "Zelda: Breath of the Wild", review: "เปิดโลกการผจญภัยแบบอิสระไร้ขีดจำกัด หนึ่งในเกมที่ดีที่สุดในโลก" },
-        { consoleId: "ps5", name: "God of War Ragnarök", review: "ภาพสวยจัดเต็ม ใช้จอย DualSense ได้ทรงพลัง การต่อสู้ดุดัน" }
+        { consoleId: "ps1", name: "Castlevania: Symphony of the Night", review: "ต้นตำรับแนว Metroidvania ระบบสำรวจปราสาทสุดลึกซึ้ง" },
+        { consoleId: "ps2", name: "Grand Theft Auto: San Andreas", review: "โลกเปิดระดับตำนาน อิสระในการเล่นสูงมาก" },
+        { consoleId: "switch", name: "Zelda: Breath of the Wild", review: "เปิดโลกการผจญภัยแบบอิสระไร้ขีดจำกัด" },
+        { consoleId: "ps5", name: "God of War Ragnarök", review: "ภาพสวยจัดเต็ม การต่อสู้ดุดัน เนื้อเรื่องเข้มข้น" }
     ];
 
     let currentConsole = null;
     let currentLetter = 'all';
 
-    function initConsoles() {
-        const container = document.getElementById('consoleContainer');
+    function initGenerations() {
+        const container = document.getElementById('genContainer');
         container.innerHTML = '';
-        consoles.forEach(c => {
-            const card = document.createElement('div');
-            card.className = 'console-card';
-            card.onclick = () => selectConsole(c.id, c.name);
-            card.innerHTML = `
-                <img src="${c.img}" alt="${c.name}" class="console-img">
-                <div class="console-name">${c.name}</div>
-                <div class="console-era">${c.era}</div>
+        generations.forEach(gen => {
+            const sec = document.createElement('div');
+            sec.className = 'gen-section';
+            
+            let buttonsHtml = gen.consoles.map(c => 
+                `<button class="console-btn" onclick="selectConsole('${c.id}', '${c.name}')">${c.name}</button>`
+            ).join('');
+
+            sec.innerHTML = `
+                <div class="gen-title">${gen.title}</div>
+                <div class="console-list">${buttonsHtml}</div>
             `;
-            container.appendChild(card);
+            container.appendChild(sec);
         });
     }
 
@@ -149,7 +166,7 @@
         currentLetter = 'all';
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('reviewPage').style.display = 'block';
-        document.getElementById('selectedConsoleTitle').innerText = `รวมรีวิวเกม: ${consoleName}`;
+        document.getElementById('selectedConsoleTitle').innerText = `รายชื่อเกม: ${consoleName}`;
         
         initAlphabet();
         renderGames();
@@ -187,7 +204,7 @@
         });
 
         if (filtered.length === 0) {
-            list.innerHTML = `<p style="grid-column: 1/-1; color: #64748b; text-align:center;">ยังไม่มีข้อมูลรีวิวเกมสำหรับหมวดนี้</p>`;
+            list.innerHTML = `<p style="grid-column: 1/-1; color: #64748b; text-align:center;">ยังไม่มีรีวิวเกมในหมวดนี้</p>`;
             return;
         }
 
@@ -204,7 +221,7 @@
         });
     }
 
-    initConsoles();
+    initGenerations();
 </script>
 
 </body>
