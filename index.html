@@ -34,7 +34,7 @@
             line-height: 1.5;
         }
 
-        /* Grid Layout: [ Left Navigation | Main Content | Right Sidebar ] */
+        /* Layout Grid */
         .layout-grid {
             display: grid;
             grid-template-columns: 240px 1fr 300px;
@@ -42,7 +42,7 @@
             align-items: start;
         }
 
-        /* 1. Left Navigation Sidebar */
+        /* Left Sidebar */
         .left-sidebar {
             background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(10px);
@@ -55,90 +55,47 @@
         }
 
         .nav-header {
-            color: #38bdf8;
-            font-size: 0.95rem;
-            font-weight: 700;
-            padding-bottom: 10px;
-            margin-bottom: 12px;
+            color: #38bdf8; font-size: 0.95rem; font-weight: 700;
+            padding-bottom: 10px; margin-bottom: 12px;
             border-bottom: 2px solid rgba(56, 189, 248, 0.3);
-            letter-spacing: 0.5px;
         }
 
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .nav-menu { display: flex; flex-direction: column; gap: 8px; }
 
         .nav-item {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid #334155;
-            color: #cbd5e1;
-            padding: 12px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.2s ease;
+            background: rgba(15, 23, 42, 0.6); border: 1px solid #334155;
+            color: #cbd5e1; padding: 12px 14px; border-radius: 8px;
+            cursor: pointer; font-size: 14px; font-weight: 500;
+            display: flex; align-items: center; gap: 10px; transition: all 0.2s ease;
         }
 
         .nav-item:hover, .nav-item.active {
-            background: rgba(56, 189, 248, 0.15);
-            border-color: #38bdf8;
-            color: #38bdf8;
-            font-weight: 600;
-            transform: translateX(3px);
+            background: rgba(56, 189, 248, 0.15); border-color: #38bdf8;
+            color: #38bdf8; font-weight: 600; transform: translateX(3px);
         }
 
-        /* 2. Main Content Area */
+        /* Main Content */
         .content-area { min-width: 0; }
-
         .page-section { display: none; }
         .page-section.active-page { display: block; }
 
         .section-box {
-            background: rgba(30, 41, 59, 0.7); 
-            backdrop-filter: blur(10px);
-            border-radius: 12px; 
-            padding: 22px; 
-            margin-bottom: 25px; 
+            background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px);
+            border-radius: 12px; padding: 22px; margin-bottom: 25px;
             border: 1px solid rgba(56, 189, 248, 0.2);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
         .section-header-title {
-            color: #f43f5e;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-top: 0;
-            margin-bottom: 18px;
-            border-bottom: 2px solid rgba(244, 63, 94, 0.3);
-            padding-bottom: 10px;
+            color: #f43f5e; font-size: 1.4rem; font-weight: 600;
+            margin-top: 0; margin-bottom: 18px;
+            border-bottom: 2px solid rgba(244, 63, 94, 0.3); padding-bottom: 10px;
         }
 
-        /* Generation Systems Styling */
-        .gen-title { 
-            color: #f43f5e; 
-            font-size: 1.2rem; 
-            font-weight: 600; 
-            margin-bottom: 14px; 
-            border-bottom: 1px solid rgba(244, 63, 94, 0.2); 
-            padding-bottom: 6px;
-        }
-
+        .gen-title { color: #f43f5e; font-size: 1.2rem; font-weight: 600; margin-bottom: 14px; border-bottom: 1px solid rgba(244, 63, 94, 0.2); padding-bottom: 6px; }
         .console-list { display: flex; flex-wrap: wrap; gap: 10px; }
-        .console-btn { 
-            background: #0f172a; color: #e2e8f0; border: 1px solid #334155; 
-            padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;
-            transition: all 0.2s;
-        }
-        .console-btn:hover { 
-            background: #38bdf8; color: #0f172a; border-color: #38bdf8; font-weight: bold;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
-        }
+        .console-btn { background: #0f172a; color: #e2e8f0; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+        .console-btn:hover { background: #38bdf8; color: #0f172a; border-color: #38bdf8; font-weight: bold; box-shadow: 0 0 10px rgba(56, 189, 248, 0.6); }
 
         .back-btn { 
             background: #f43f5e; color: #fff; border: none; padding: 10px 20px; 
@@ -147,112 +104,30 @@
         }
         .back-btn:hover { background: #e11d48; }
 
-        /* Game List Grid */
-        .alphabet-filter { 
-            display: flex; gap: 6px; flex-wrap: wrap; margin: 15px 0 20px 0; 
-            background: rgba(15, 23, 42, 0.8); padding: 10px; border-radius: 8px; border: 1px solid #334155;
-        }
-        .alpha-btn { 
-            border: none; background: transparent; color: #38bdf8; font-weight: bold; 
-            cursor: pointer; padding: 4px 8px; border-radius: 4px; font-size: 13px;
-        }
-        .alpha-btn:hover { background: #38bdf8; color: #0f172a; }
-
         .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        
-        .game-card-summary { 
-            background: rgba(30, 41, 59, 0.8); border-radius: 10px; padding: 14px; 
-            border: 1px solid #334155; display: flex; gap: 12px; cursor: pointer; transition: 0.2s;
-        }
+        .game-card-summary { background: rgba(30, 41, 59, 0.8); border-radius: 10px; padding: 14px; border: 1px solid #334155; display: flex; gap: 12px; cursor: pointer; transition: 0.2s; }
         .game-card-summary:hover { border-color: #38bdf8; transform: translateY(-2px); }
         .summary-cover { width: 90px; height: 70px; object-fit: cover; border-radius: 6px; border: 1px solid #38bdf8; flex-shrink: 0; }
-        .summary-info h3 { margin: 0 0 4px 0; color: #38bdf8; font-size: 1.05rem; }
-        .genre-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
-        .genre-tag { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 11px; padding: 2px 6px; border-radius: 4px; }
 
-        /* Content List Cards (For Characters, Magazines, Guides) */
-        .item-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 18px;
-        }
+        /* Media / Cards Grid */
+        .item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+        .media-card { background: rgba(30, 41, 59, 0.8); border-radius: 10px; border: 1px solid #334155; overflow: hidden; transition: all 0.2s ease; cursor: pointer; }
+        .media-card:hover { border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 0 15px rgba(56, 189, 248, 0.25); }
+        .media-thumb { width: 100%; height: 160px; object-fit: cover; border-bottom: 1px solid #334155; }
+        .media-info { padding: 12px; }
+        .media-title { color: #f8fafc; font-size: 1rem; font-weight: 600; margin: 0 0 4px 0; }
+        .media-sub { color: #94a3b8; font-size: 0.85rem; margin: 0; }
 
-        .media-card {
-            background: rgba(30, 41, 59, 0.8);
-            border-radius: 10px;
-            border: 1px solid #334155;
-            overflow: hidden;
-            transition: all 0.2s ease;
-        }
-        .media-card:hover {
-            border-color: #38bdf8;
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
-        }
-        .media-thumb {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-bottom: 1px solid #334155;
-        }
-        .media-info {
-            padding: 12px;
-        }
-        .media-title {
-            color: #f8fafc;
-            font-size: 1rem;
-            font-weight: 600;
-            margin: 0 0 6px 0;
-        }
-        .media-sub {
-            color: #94a3b8;
-            font-size: 0.85rem;
-            margin: 0;
-        }
-
-        /* 3. Right Sidebar */
-        .right-sidebar {
-            background: rgba(30, 41, 59, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 18px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            position: sticky;
-            top: 20px;
-        }
-
-        .sidebar-title {
-            color: #38bdf8; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px;
-            border-bottom: 2px solid rgba(56, 189, 248, 0.3); padding-bottom: 8px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-
-        .new-badge-icon {
-            background: #f43f5e; color: #fff; font-size: 9px; padding: 2px 6px;
-            border-radius: 8px; font-family: 'Press Start 2P', cursive; animation: pulse 1.5s infinite;
-        }
-
-        .recent-card {
-            display: flex; gap: 10px; padding: 8px; border-radius: 8px;
-            background: rgba(15, 23, 42, 0.6); border: 1px solid #334155; margin-bottom: 10px;
-            cursor: pointer; transition: 0.2s;
-        }
+        /* Right Sidebar */
+        .right-sidebar { background: rgba(30, 41, 59, 0.85); backdrop-filter: blur(10px); border-radius: 12px; padding: 18px; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); position: sticky; top: 20px; }
+        .sidebar-title { color: #38bdf8; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid rgba(56, 189, 248, 0.3); padding-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+        .new-badge-icon { background: #f43f5e; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 8px; font-family: 'Press Start 2P', cursive; animation: pulse 1.5s infinite; }
+        .recent-card { display: flex; gap: 10px; padding: 8px; border-radius: 8px; background: rgba(15, 23, 42, 0.6); border: 1px solid #334155; margin-bottom: 10px; cursor: pointer; transition: 0.2s; }
         .recent-card:hover { border-color: #38bdf8; transform: translateX(3px); }
         .recent-thumb { width: 65px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #38bdf8; }
-        .recent-info h4 { margin: 0 0 2px 0; color: #f8fafc; font-size: 14px; }
-        .recent-meta { font-size: 11px; color: #94a3b8; display: flex; gap: 6px; }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 1100px) {
-            .layout-grid { grid-template-columns: 220px 1fr; }
-            .right-sidebar { grid-column: span 2; position: static; }
-        }
-        @media (max-width: 768px) {
-            .layout-grid { grid-template-columns: 1fr; }
-            .left-sidebar, .right-sidebar { position: static; }
-        }
-
+        @media (max-width: 1100px) { .layout-grid { grid-template-columns: 220px 1fr; } .right-sidebar { grid-column: span 2; position: static; } }
+        @media (max-width: 768px) { .layout-grid { grid-template-columns: 1fr; } .left-sidebar, .right-sidebar { position: static; } }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
     </style>
 </head>
@@ -263,7 +138,7 @@
 
     <div class="layout-grid">
         
-        <!-- เมนูด้านซ้าย (Left Navigation Menu) -->
+        <!-- Left Sidebar Navigation -->
         <div class="left-sidebar">
             <div class="nav-header">NAVIGATION</div>
             <div class="nav-menu">
@@ -282,10 +157,10 @@
             </div>
         </div>
 
-        <!-- ตรงกลาง: เนื้อหาหลัก (Main Content) -->
+        <!-- Main Content Area -->
         <div class="content-area">
             
-            <!-- Tab 1: รายชื่อเครื่องเกม & รีวิว -->
+            <!-- Tab 1: Game Systems & Reviews -->
             <div id="systemsPage" class="page-section active-page">
                 <div id="systemsMain">
                     <div id="genContainer"></div>
@@ -294,7 +169,6 @@
                 <div id="reviewPage" style="display:none;">
                     <button class="back-btn" onclick="goHomeSystems()">← Back to Systems</button>
                     <h2 id="selectedConsoleTitle" style="color: #38bdf8; margin-top:0;"></h2>
-                    <div class="alphabet-filter" id="alphabetButtons"></div>
                     <div class="game-grid" id="gameList"></div>
                 </div>
 
@@ -304,48 +178,58 @@
                 </div>
             </div>
 
-            <!-- Tab 2: แนะนำตัวละครจากวีดีโอเกม -->
+            <!-- Tab 2: Character System (Game -> Characters -> Profile) -->
             <div id="charactersPage" class="page-section">
-                <div class="section-box">
-                    <h2 class="section-header-title">👤 GAME CHARACTERS (แนะนำตัวละคร)</h2>
-                    <div class="item-grid">
-                        <div class="media-card">
-                            <img src="https://i.postimg.cc/gJjyfS65/00.jpg" class="media-thumb" alt="Bill Rizer">
-                            <div class="media-info">
-                                <h3 class="media-title">Bill Rizer & Lance Bean</h3>
-                                <p class="media-sub">Game: Contra (NES)</p>
-                            </div>
-                        </div>
+                <!-- 2.1 หน้ารวมรายชื่อเกม -->
+                <div id="charGamesList">
+                    <div class="section-box">
+                        <h2 class="section-header-title">👤 GAME CHARACTERS (เลือกเกมที่ต้องการดูตัวละคร)</h2>
+                        <div class="item-grid" id="charGamesGrid"></div>
                     </div>
+                </div>
+
+                <!-- 2.2 หน้ารวมตัวละครในเกมที่เลือก -->
+                <div id="charListByGame" style="display:none;">
+                    <button class="back-btn" onclick="goBackToCharGames()">← Back to Games</button>
+                    <div class="section-box">
+                        <h2 class="section-header-title" id="charGameTitle">CHARACTERS IN GAME</h2>
+                        <div class="item-grid" id="charactersGrid"></div>
+                    </div>
+                </div>
+
+                <!-- 2.3 หน้าเจาะลึกประวัติตัวละคร -->
+                <div id="charProfileDetail" style="display:none;">
+                    <button class="back-btn" onclick="goBackToCharList()">← Back to Characters</button>
+                    <div class="section-box" id="charProfileContent"></div>
                 </div>
             </div>
 
-            <!-- Tab 3: หนังสือนิตยสารเกม -->
+            <!-- Tab 3: Game Magazines -->
             <div id="magazinesPage" class="page-section">
                 <div class="section-box">
                     <h2 class="section-header-title">📖 GAME MAGAZINES (นิตยสารเกม)</h2>
                     <div class="item-grid">
                         <div class="media-card">
-                            <img src="https://via.placeholder.com/200x260/1e293b/38bdf8?text=Magazine+Vol.1" class="media-thumb" style="height:240px;" alt="Magazine">
+                            <img src="https://via.placeholder.com/200x260/1e293b/38bdf8?text=Kem+Choey+Vol.1" class="media-thumb" style="height:220px;" alt="Mag">
                             <div class="media-info">
                                 <h3 class="media-title">Kem Choey Magazine Vol. 1</h3>
-                                <p class="media-sub">ฉบับย้อนรอยเกมยุค 80s</p>
+                                <p class="media-sub">ย้อนรอยเกมเรโทรยุค 80s</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab 4: หนังสือบทสรุปเกม -->
+            <!-- Tab 4: Strategy Guides -->
             <div id="guidesPage" class="page-section">
                 <div class="section-box">
                     <h2 class="section-header-title">📚 GAME STRATEGY GUIDES (บทสรุปเกม)</h2>
                     <div class="item-grid">
                         <div class="media-card">
-                            <img src="https://via.placeholder.com/200x260/1e293b/f43f5e?text=Guide+Book" class="media-thumb" style="height:240px;" alt="Guide">
+                            <img src="https://via.placeholder.com/200x260/1e293b/f43f5e?text=Contra+Guide" class="media-thumb" style="height:220px;" alt="Guide">
                             <div class="media-info">
                                 <h3 class="media-title">บทสรุป Contra 100% Complete</h3>
-                                <p class="media-sub">เผยสูตรลับและตำแหน่งไอเทม</p>
+                                <p class="media-sub">เผยสูตรลับและเทคนิคผ่านด่าน</p>
                             </div>
                         </div>
                     </div>
@@ -354,7 +238,7 @@
 
         </div>
 
-        <!-- เมนูด้านขวา (Right Sidebar) -->
+        <!-- Right Sidebar (New Reviews) -->
         <div class="right-sidebar">
             <div class="sidebar-title">
                 <span>NEW REVIEWS</span>
@@ -367,17 +251,45 @@
 </div>
 
 <script>
-    // สลับหน้าเมนูด้านซ้าย
+    // ฐานข้อมูลเกมที่มีตัวละคร
+    const characterDatabase = [
+        {
+            gameId: "contra-fc",
+            gameName: "Contra",
+            console: "NES / Famicom",
+            cover: "https://i.postimg.cc/gJjyfS65/00.jpg",
+            characters: [
+                {
+                    id: "bill-rizer",
+                    name: "Bill Rizer (Mad Dog)",
+                    role: "ตัวละครหลัก (Player 1)",
+                    thumb: "https://i.postimg.cc/gJjyfS65/00.jpg",
+                    bio: "หน่วยรบพิเศษ Earth Marine Corps ยอดทหารกล้าที่รับแรงบันดาลใจมาจาก Arnold Schwarzenegger มีความชำนาญการใช้อาวุธหนักทุกรูปแบบ และเป็นผู้นำบุกถล่มเกาะ Galuga"
+                },
+                {
+                    id: "lance-bean",
+                    name: "Lance Bean (Scorpion)",
+                    role: "ตัวละครหลัก (Player 2)",
+                    thumb: "https://i.postimg.cc/gJjyfS65/00.jpg",
+                    bio: "คู่หูสายลุยของ Bill Rizer ที่ได้รับแรงบันดาลใจจาก Sylvester Stallone โดดเด่นด้านความคล่องตัวและการวางแผนรบท่ามกลางวงล้อมของศัตรู"
+                }
+            ]
+        }
+    ];
+
+    let selectedGameCharData = null;
+
+    // Switch Navigation Tabs
     function switchTab(tabName, element) {
         document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
         element.classList.add('active');
-
         document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-page'));
         
         if (tabName === 'systems') {
             document.getElementById('systemsPage').classList.add('active-page');
         } else if (tabName === 'characters') {
             document.getElementById('charactersPage').classList.add('active-page');
+            renderCharacterGames();
         } else if (tabName === 'magazines') {
             document.getElementById('magazinesPage').classList.add('active-page');
         } else if (tabName === 'guides') {
@@ -385,99 +297,108 @@
         }
     }
 
+    // --- CHARACTER SYSTEM FUNCTIONS --- //
+    // 1. Render Games List
+    function renderCharacterGames() {
+        const grid = document.getElementById('charGamesGrid');
+        grid.innerHTML = '';
+
+        characterDatabase.forEach(g => {
+            const card = document.createElement('div');
+            card.className = 'media-card';
+            card.onclick = () => openGameCharacters(g.gameId);
+
+            card.innerHTML = `
+                <img src="${g.cover}" class="media-thumb" alt="${g.gameName}">
+                <div class="media-info">
+                    <h3 class="media-title">${g.gameName}</h3>
+                    <p class="media-sub">${g.console} (${g.characters.length} ตัวละคร)</p>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // 2. Open Characters in Selected Game
+    function openGameCharacters(gameId) {
+        selectedGameCharData = characterDatabase.find(g => g.gameId === gameId);
+        if (!selectedGameCharData) return;
+
+        document.getElementById('charGamesList').style.display = 'none';
+        document.getElementById('charListByGame').style.display = 'block';
+        document.getElementById('charProfileDetail').style.display = 'none';
+
+        document.getElementById('charGameTitle').innerText = `👤 ตัวละครในเกม: ${selectedGameCharData.gameName}`;
+        
+        const grid = document.getElementById('charactersGrid');
+        grid.innerHTML = '';
+
+        selectedGameCharData.characters.forEach(char => {
+            const card = document.createElement('div');
+            card.className = 'media-card';
+            card.onclick = () => openCharacterProfile(char);
+
+            card.innerHTML = `
+                <img src="${char.thumb}" class="media-thumb" alt="${char.name}">
+                <div class="media-info">
+                    <h3 class="media-title">${char.name}</h3>
+                    <p class="media-sub" style="color:#38bdf8;">${char.role}</p>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // 3. Open Character Detailed Profile
+    function openCharacterProfile(char) {
+        document.getElementById('charGamesList').style.display = 'none';
+        document.getElementById('charListByGame').style.display = 'none';
+        document.getElementById('charProfileDetail').style.display = 'block';
+
+        document.getElementById('charProfileContent').innerHTML = `
+            <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:center; margin-bottom:20px;">
+                <img src="${char.thumb}" style="width:180px; height:180px; object-fit:cover; border-radius:10px; border:2px solid #38bdf8;">
+                <div>
+                    <h1 style="color:#38bdf8; margin:0 0 8px 0;">${char.name}</h1>
+                    <p style="color:#f43f5e; font-size:1.1rem; margin:0;"><strong>บทบาท:</strong> ${char.role}</p>
+                    <p style="color:#94a3b8; margin-top:5px;"><strong>จากเกม:</strong> ${selectedGameCharData.gameName} (${selectedGameCharData.console})</p>
+                </div>
+            </div>
+            <h3 style="color:#f43f5e; border-left:4px solid #f43f5e; padding-left:10px;">📖 ประวัติและรายละเอียดตัวละคร</h3>
+            <p style="line-height:1.8; color:#e2e8f0; font-size:1.1rem;">${char.bio}</p>
+        `;
+    }
+
+    function goBackToCharGames() {
+        document.getElementById('charGamesList').style.display = 'block';
+        document.getElementById('charListByGame').style.display = 'none';
+        document.getElementById('charProfileDetail').style.display = 'none';
+    }
+
+    function goBackToCharList() {
+        document.getElementById('charGamesList').style.display = 'none';
+        document.getElementById('charListByGame').style.display = 'block';
+        document.getElementById('charProfileDetail').style.display = 'none';
+    }
+
+    // --- GAME SYSTEMS & REVIEWS LOGIC --- //
     const generations = [
         {
-            title: "Active Platforms / Current Gen",
-            consoles: [
-                { id: "pc", name: "PC Gaming" },
-                { id: "ps5", name: "PlayStation 5" },
-                { id: "xboxsx", name: "Xbox Series X/S" },
-                { id: "switch", name: "Nintendo Switch" }
-            ]
-        },
-        {
-            title: "Eighth Generation (2012-2019)",
-            consoles: [
-                { id: "ps4", name: "PlayStation 4" },
-                { id: "xboxone", name: "Xbox One" },
-                { id: "wiiu", name: "Wii U" },
-                { id: "3ds", name: "Nintendo 3DS" },
-                { id: "psvita", name: "PlayStation Vita" }
-            ]
-        },
-        {
-            title: "Seventh Generation (2005-2015)",
-            consoles: [
-                { id: "ps3", name: "PlayStation 3" },
-                { id: "xbox360", name: "Xbox 360" },
-                { id: "wii", name: "Wii" },
-                { id: "ds", name: "Nintendo DS" },
-                { id: "psp", name: "PSP" }
-            ]
-        },
-        {
-            title: "Sixth Generation (1998-2009)",
-            consoles: [
-                { id: "ps2", name: "PlayStation 2" },
-                { id: "gamecube", name: "GameCube" },
-                { id: "xbox", name: "Xbox" },
-                { id: "dreamcast", name: "Dreamcast" },
-                { id: "gba", name: "Game Boy Advance" }
-            ]
-        },
-        {
-            title: "Fifth Generation (1993-2001)",
-            consoles: [
-                { id: "ps1", name: "PlayStation" },
-                { id: "n64", name: "Nintendo 64" },
-                { id: "saturn", name: "Sega Saturn" },
-                { id: "gbc", name: "Game Boy Color" }
-            ]
-        },
-        {
-            title: "Fourth Generation (1987-1995)",
-            consoles: [
-                { id: "sfc", name: "Super Nintendo (SFC)" },
-                { id: "genesis", name: "Sega Genesis / Mega Drive" },
-                { id: "gb", name: "Game Boy" }
-            ]
-        },
-        {
             title: "Third Generation (1983-1990)",
-            consoles: [
-                { id: "fc", name: "NES / Famicom" },
-                { id: "master", name: "Sega Master System" },
-                { id: "atari7800", name: "Atari 7800" }
-            ]
-        },
-        {
-            title: "First & Second Generation (1972-1983)",
-            consoles: [
-                { id: "atari2600", name: "Atari 2600" },
-                { id: "odyssey", name: "Magnavox Odyssey" }
-            ]
+            consoles: [{ id: "fc", name: "NES / Famicom" }]
         }
     ];
 
     const games = [
         { 
-            id: "contra-fc",
-            consoleId: "fc",
-            consoleName: "NES / Famicom", 
-            name: "Contra", 
-            score: "10/10",
-            date: "2026-03-28",
-            genres: ["Action", "Run and Gun"],
+            id: "contra-fc", consoleId: "fc", consoleName: "NES / Famicom", name: "Contra", score: "10/10", date: "2026-03-28",
             cover: "https://i.postimg.cc/gJjyfS65/00.jpg",
             summary: "สุดยอดเกมเดินยิงระดับตำนาน การต่อสู้ของ 2 ทหารกล้าถล่มกองทัพเอเลี่ยน!",
-            story: "เรื่องราวเกิดขึ้นในปี ค.ศ. 2633 องค์กรก่อการร้ายต่างดาวในนาม 'Red Falcon' ได้แอบเข้ามายึดครองเกาะ Galuga...",
+            story: "เรื่องราวเกิดขึ้นในปี ค.ศ. 2633 องค์กรก่อการร้ายต่างดาวในนาม 'Red Falcon'...",
             lore: "คำว่า 'Contra' ในจักรวาลของเกม หมายถึง รหัสยศพิเศษที่มอบให้กับทหารที่มีจิตวิญญาณแห่งการรบอันเหนือมนุษย์...",
             gameplayReview: "เกมเพลย์เป็นแนว Action Side-Scrolling ผสมมุมมอง 3D ในฉากฐานทัพ..."
         }
     ];
-
-    let currentConsole = null;
-    let currentLetter = 'all';
 
     function initGenerations() {
         const container = document.getElementById('genContainer');
@@ -485,14 +406,8 @@
         generations.forEach(gen => {
             const sec = document.createElement('div');
             sec.className = 'section-box';
-            let buttonsHtml = gen.consoles.map(c => 
-                `<button class="console-btn" onclick="selectConsole('${c.id}', '${c.name}')">${c.name}</button>`
-            ).join('');
-
-            sec.innerHTML = `
-                <div class="gen-title">🎮 ${gen.title}</div>
-                <div class="console-list">${buttonsHtml}</div>
-            `;
+            let buttonsHtml = gen.consoles.map(c => `<button class="console-btn" onclick="selectConsole('${c.id}', '${c.name}')">${c.name}</button>`).join('');
+            sec.innerHTML = `<div class="gen-title">🎮 ${gen.title}</div><div class="console-list">${buttonsHtml}</div>`;
             container.appendChild(sec);
         });
     }
@@ -500,122 +415,40 @@
     function renderRecentReviews() {
         const container = document.getElementById('recentReviewsContainer');
         container.innerHTML = '';
-        const recentList = [...games].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
-
-        recentList.forEach(game => {
+        games.forEach(game => {
             const card = document.createElement('div');
             card.className = 'recent-card';
             card.onclick = () => openGameDetail(game.id);
-
-            card.innerHTML = `
-                <img src="${game.cover}" class="recent-thumb" alt="${game.name}">
-                <div class="recent-info">
-                    <h4>${game.name}</h4>
-                    <div class="recent-meta">
-                        <span>🎮 ${game.consoleName}</span>
-                        <span style="color:#f59e0b;">★ ${game.score}</span>
-                    </div>
-                </div>
-            `;
+            card.innerHTML = `<img src="${game.cover}" class="recent-thumb"><div><h4 style="margin:0; color:#fff;">${game.name}</h4><small style="color:#94a3b8;">★ ${game.score}</small></div>`;
             container.appendChild(card);
         });
     }
 
     function selectConsole(consoleId, consoleName) {
-        currentConsole = consoleId;
-        currentLetter = 'all';
         document.getElementById('systemsMain').style.display = 'none';
         document.getElementById('reviewPage').style.display = 'block';
-        document.getElementById('detailPage').style.display = 'none';
         document.getElementById('selectedConsoleTitle').innerText = `Games for ${consoleName}`;
-        
-        initAlphabet();
-        renderGames();
-    }
-
-    function goHomeSystems() {
-        document.getElementById('systemsMain').style.display = 'block';
-        document.getElementById('reviewPage').style.display = 'none';
-        document.getElementById('detailPage').style.display = 'none';
-    }
-
-    function goBackToGameList() {
-        document.getElementById('systemsMain').style.display = 'none';
-        document.getElementById('reviewPage').style.display = 'block';
-        document.getElementById('detailPage').style.display = 'none';
-    }
-
-    function initAlphabet() {
-        const container = document.getElementById('alphabetButtons');
-        let html = `<button class="alpha-btn" onclick="filterLetter('all')">ALL</button>`;
-        for (let i = 65; i <= 90; i++) {
-            const letter = String.fromCharCode(i);
-            html += `<button class="alpha-btn" onclick="filterLetter('${letter}')">${letter}</button>`;
-        }
-        container.innerHTML = html;
-    }
-
-    function filterLetter(letter) {
-        currentLetter = letter;
-        renderGames();
-    }
-
-    function renderGames() {
         const list = document.getElementById('gameList');
         list.innerHTML = '';
-
-        const filtered = games.filter(game => {
-            const matchConsole = game.consoleId === currentConsole;
-            const firstLetter = game.name.charAt(0).toUpperCase();
-            return matchConsole && (currentLetter === 'all' || firstLetter === currentLetter);
-        });
-
-        if (filtered.length === 0) {
-            list.innerHTML = `<p style="grid-column: 1/-1; color: #64748b; text-align:center; padding: 30px 0;">ยังไม่มีรีวิวในหมวดนี้</p>`;
-            return;
-        }
-
-        filtered.forEach(game => {
+        games.filter(g => g.consoleId === consoleId).forEach(game => {
             const card = document.createElement('div');
             card.className = 'game-card-summary';
             card.onclick = () => openGameDetail(game.id);
-
-            const genreTagsHtml = (game.genres || []).map(g => `<span class="genre-tag">${g}</span>`).join('');
-
-            card.innerHTML = `
-                <img src="${game.cover}" class="summary-cover" alt="${game.name}">
-                <div>
-                    <h3>${game.name}</h3>
-                    <div style="color:#f59e0b; font-size:12px; font-weight:bold;">★ ${game.score}</div>
-                    <div class="genre-tags">${genreTagsHtml}</div>
-                </div>
-            `;
+            card.innerHTML = `<img src="${game.cover}" class="summary-cover"><div><h3 style="margin:0; color:#38bdf8;">${game.name}</h3><small style="color:#f59e0b;">★ ${game.score}</small></div>`;
             list.appendChild(card);
         });
     }
 
+    function goHomeSystems() { document.getElementById('systemsMain').style.display = 'block'; document.getElementById('reviewPage').style.display = 'none'; }
+    function goBackToGameList() { document.getElementById('systemsMain').style.display = 'none'; document.getElementById('reviewPage').style.display = 'block'; document.getElementById('detailPage').style.display = 'none'; }
+
     function openGameDetail(gameId) {
-        const game = games.find(g => g.id === gameId);
-        if(!game) return;
-
-        // บังคับสลับมาที่ Tab Systems เสมอหากคลิกจาก Sidebar
         switchTab('systems', document.querySelectorAll('.nav-item')[0]);
-
         document.getElementById('systemsMain').style.display = 'none';
         document.getElementById('reviewPage').style.display = 'none';
         document.getElementById('detailPage').style.display = 'block';
-
-        document.getElementById('detailContent').innerHTML = `
-            <h1 style="color:#38bdf8; margin-top:0;">${game.name}</h1>
-            <p><strong>Console:</strong> ${game.consoleName} | <strong>Score:</strong> ${game.score}</p>
-            <hr style="border-color:rgba(56,189,248,0.2); margin:20px 0;">
-            <h3 style="color:#f43f5e;">📖 STORY</h3>
-            <p style="line-height:1.8; color:#e2e8f0;">${game.story}</p>
-            <h3 style="color:#f43f5e;">🔮 LORE</h3>
-            <p style="line-height:1.8; color:#e2e8f0;">${game.lore}</p>
-            <h3 style="color:#f43f5e;">🎮 GAMEPLAY REVIEW</h3>
-            <p style="line-height:1.8; color:#e2e8f0;">${game.gameplayReview}</p>
-        `;
+        const game = games.find(g => g.id === gameId);
+        document.getElementById('detailContent').innerHTML = `<h1 style="color:#38bdf8;">${game.name}</h1><p>${game.summary}</p><h3 style="color:#f43f5e;">📖 STORY</h3><p>${game.story}</p>`;
     }
 
     initGenerations();
