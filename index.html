@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game System List - Game Review Hub</title>
-    <!-- ฟอนต์สไตล์เกมมิ่งยุคเรโทร -->
+    <title>Game Hub - Retro Gaming & Media</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; font-family: 'Prompt', sans-serif; }
@@ -13,7 +12,7 @@
             margin: 0; 
             background-color: #0b0f19; 
             color: #f8fafc; 
-            padding: 30px 20px;
+            padding: 25px 15px;
             background-image: 
                 radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15), transparent 70%),
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -22,118 +21,85 @@
             background-attachment: fixed;
         }
 
-        .container { max-width: 1280px; margin: 0 auto; }
+        .container { max-width: 1400px; margin: 0 auto; }
         
         h1 { 
             text-align: center; 
             font-family: 'Press Start 2P', cursive;
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: #38bdf8; 
-            margin-bottom: 40px; 
+            margin-bottom: 35px; 
             text-shadow: 0 0 10px rgba(56, 189, 248, 0.6), 0 0 20px rgba(56, 189, 248, 0.3);
             letter-spacing: 1px;
             line-height: 1.5;
         }
 
-        /* Layout แบ่งเป็น Main Content และ Sidebar ด้านขวา */
-        .main-layout {
-            display: flex;
-            gap: 25px;
-            align-items: flex-start;
+        /* Grid Layout: [ Left Navigation | Main Content | Right Sidebar ] */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr 300px;
+            gap: 20px;
+            align-items: start;
         }
 
-        .content-area {
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* Sidebar แถบอัปเดตล่าสุดด้านขวา */
-        .sidebar {
-            width: 320px;
+        /* 1. Left Navigation Sidebar */
+        .left-sidebar {
             background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(10px);
             border-radius: 12px;
-            padding: 20px;
+            padding: 15px;
             border: 1px solid rgba(56, 189, 248, 0.3);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             position: sticky;
             top: 20px;
-            flex-shrink: 0;
         }
 
-        .sidebar-title {
+        .nav-header {
             color: #38bdf8;
-            font-size: 1.2rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 18px;
-            border-bottom: 2px solid rgba(56, 189, 248, 0.3);
             padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            margin-bottom: 12px;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+            letter-spacing: 0.5px;
         }
 
-        .new-badge-icon {
-            background: #f43f5e;
-            color: #fff;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-family: 'Press Start 2P', cursive;
-            animation: pulse 1.5s infinite;
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .recent-card {
-            display: flex;
-            gap: 12px;
-            padding: 10px;
-            border-radius: 8px;
+        .nav-item {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid #334155;
-            margin-bottom: 12px;
+            color: #cbd5e1;
+            padding: 12px 14px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             transition: all 0.2s ease;
         }
 
-        .recent-card:hover {
+        .nav-item:hover, .nav-item.active {
+            background: rgba(56, 189, 248, 0.15);
             border-color: #38bdf8;
-            transform: translateX(4px);
-            background: rgba(56, 189, 248, 0.1);
-        }
-
-        .recent-thumb {
-            width: 75px;
-            height: 55px;
-            object-fit: cover;
-            border-radius: 6px;
-            border: 1px solid #38bdf8;
-            flex-shrink: 0;
-        }
-
-        .recent-info h4 {
-            margin: 0 0 4px 0;
-            color: #f8fafc;
-            font-size: 15px;
+            color: #38bdf8;
             font-weight: 600;
+            transform: translateX(3px);
         }
 
-        .recent-meta {
-            font-size: 12px;
-            color: #94a3b8;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
+        /* 2. Main Content Area */
+        .content-area { min-width: 0; }
 
-        /* Responsive สำหรับมือถือ */
-        @media (max-width: 900px) {
-            .main-layout { flex-direction: column; }
-            .sidebar { width: 100%; position: static; }
-        }
+        .page-section { display: none; }
+        .page-section.active-page { display: block; }
 
-        /* 1. หน้าหลัก (Gen List) */
-        .gen-section { 
+        .section-box {
             background: rgba(30, 41, 59, 0.7); 
             backdrop-filter: blur(10px);
             border-radius: 12px; 
@@ -143,136 +109,151 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
+        .section-header-title {
+            color: #f43f5e;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 18px;
+            border-bottom: 2px solid rgba(244, 63, 94, 0.3);
+            padding-bottom: 10px;
+        }
+
+        /* Generation Systems Styling */
         .gen-title { 
             color: #f43f5e; 
-            font-size: 1.3rem; 
+            font-size: 1.2rem; 
             font-weight: 600; 
-            margin-bottom: 16px; 
-            border-bottom: 2px solid rgba(244, 63, 94, 0.3); 
-            padding-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 14px; 
+            border-bottom: 1px solid rgba(244, 63, 94, 0.2); 
+            padding-bottom: 6px;
         }
-        .gen-title::before { content: "🎮"; font-size: 1.1rem; }
 
-        .console-list { display: flex; flex-wrap: wrap; gap: 12px; }
+        .console-list { display: flex; flex-wrap: wrap; gap: 10px; }
         .console-btn { 
             background: #0f172a; color: #e2e8f0; border: 1px solid #334155; 
-            padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 500;
-            transition: all 0.2s ease-in-out;
+            padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;
+            transition: all 0.2s;
         }
         .console-btn:hover { 
-            background: #38bdf8; color: #0f172a; font-weight: bold; border-color: #38bdf8;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.8); transform: translateY(-2px);
+            background: #38bdf8; color: #0f172a; border-color: #38bdf8; font-weight: bold;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
         }
 
-        /* ปุ่มย้อนกลับ */
         .back-btn { 
-            background: #f43f5e; color: #fff; border: none; padding: 12px 24px; 
-            border-radius: 6px; cursor: pointer; margin-bottom: 25px; font-weight: 600; font-size: 16px;
+            background: #f43f5e; color: #fff; border: none; padding: 10px 20px; 
+            border-radius: 6px; cursor: pointer; margin-bottom: 20px; font-weight: 600; font-size: 14px;
             box-shadow: 0 0 10px rgba(244, 63, 94, 0.4); transition: 0.2s;
         }
-        .back-btn:hover { background: #e11d48; box-shadow: 0 0 15px rgba(244, 63, 94, 0.8); }
+        .back-btn:hover { background: #e11d48; }
 
-        /* 2. หน้าบทความ/รายชื่อเกม */
-        #reviewPage, #detailPage { display: none; }
-
+        /* Game List Grid */
         .alphabet-filter { 
-            display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0; 
-            background: rgba(15, 23, 42, 0.8); padding: 14px; border-radius: 8px; border: 1px solid #334155;
+            display: flex; gap: 6px; flex-wrap: wrap; margin: 15px 0 20px 0; 
+            background: rgba(15, 23, 42, 0.8); padding: 10px; border-radius: 8px; border: 1px solid #334155;
         }
         .alpha-btn { 
             border: none; background: transparent; color: #38bdf8; font-weight: bold; 
-            cursor: pointer; padding: 6px 12px; border-radius: 4px; transition: 0.2s; font-size: 15px;
+            cursor: pointer; padding: 4px 8px; border-radius: 4px; font-size: 13px;
         }
         .alpha-btn:hover { background: #38bdf8; color: #0f172a; }
 
-        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
         
         .game-card-summary { 
-            background: rgba(30, 41, 59, 0.8); border-radius: 12px; padding: 16px; 
-            border: 1px solid #334155; display: flex; gap: 15px; cursor: pointer; transition: 0.2s;
-            align-items: center;
+            background: rgba(30, 41, 59, 0.8); border-radius: 10px; padding: 14px; 
+            border: 1px solid #334155; display: flex; gap: 12px; cursor: pointer; transition: 0.2s;
         }
-        .game-card-summary:hover {
-            border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-        }
-        
-        .summary-cover { 
-            width: 110px; 
-            height: 85px; 
-            object-fit: cover; 
-            border-radius: 6px; 
-            border: 1px solid #38bdf8; 
-            flex-shrink: 0;
-        }
-        .summary-info { flex: 1; min-width: 0; }
-        .summary-info h3 { margin: 0 0 5px 0; color: #38bdf8; font-size: 1.25rem; font-weight: 600; }
-        .summary-info p { font-size: 14px; color: #94a3b8; margin: 6px 0 0 0; line-clamp: 2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; }
+        .game-card-summary:hover { border-color: #38bdf8; transform: translateY(-2px); }
+        .summary-cover { width: 90px; height: 70px; object-fit: cover; border-radius: 6px; border: 1px solid #38bdf8; flex-shrink: 0; }
+        .summary-info h3 { margin: 0 0 4px 0; color: #38bdf8; font-size: 1.05rem; }
+        .genre-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+        .genre-tag { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 11px; padding: 2px 6px; border-radius: 4px; }
 
-        .genre-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-        .genre-tag { 
-            background: rgba(56, 189, 248, 0.15); 
-            color: #38bdf8; 
-            border: 1px solid rgba(56, 189, 248, 0.4); 
-            font-size: 12px; 
-            padding: 3px 10px; 
-            border-radius: 4px; 
-            font-weight: 500;
+        /* Content List Cards (For Characters, Magazines, Guides) */
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 18px;
         }
 
-        /* 3. หน้าเนื้อหาเกมแบบเจาะลึก (Detail Page) */
-        .detail-container {
-            background: rgba(30, 41, 59, 0.9); border-radius: 12px; padding: 35px; border: 1px solid #334155;
+        .media-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 10px;
+            border: 1px solid #334155;
+            overflow: hidden;
+            transition: all 0.2s ease;
         }
-        .detail-header { display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 30px; border-bottom: 1px solid #475569; padding-bottom: 25px; align-items: center; }
-        
-        .detail-cover { 
-            width: 280px; 
-            height: 195px; 
-            object-fit: cover; 
-            border-radius: 8px; 
-            border: 2px solid #38bdf8; 
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); 
-            cursor: pointer;
-            transition: transform 0.2s ease;
+        .media-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
         }
-        .detail-cover:hover { transform: scale(1.02); }
+        .media-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #334155;
+        }
+        .media-info {
+            padding: 12px;
+        }
+        .media-title {
+            color: #f8fafc;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 6px 0;
+        }
+        .media-sub {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin: 0;
+        }
 
-        .detail-meta { flex: 1; min-width: 260px; }
-        .detail-title { font-size: 2.4rem; color: #f8fafc; margin: 0 0 12px 0; font-weight: 700; line-height: 1.2; }
-        .score-badge { background: #f59e0b; color: #0f172a; padding: 6px 14px; border-radius: 6px; font-weight: bold; font-family: 'Press Start 2P', cursive; font-size: 1rem; display: inline-block; }
-        
-        .section-header { color: #f43f5e; font-size: 1.5rem; font-weight: 600; margin: 30px 0 12px 0; border-left: 5px solid #f43f5e; padding-left: 12px; letter-spacing: 0.5px; }
-        .detail-text { font-size: 1.15rem; color: #e2e8f0; line-height: 1.9; font-weight: 400; }
-        
-        .screenshot-grid { display: flex; gap: 15px; margin-top: 18px; flex-wrap: wrap; }
-        .screenshot-img { 
-            width: 220px; 
-            height: 145px; 
-            object-fit: cover; 
-            border-radius: 8px; 
-            border: 1px solid #475569; 
-            cursor: pointer;
-            transition: transform 0.2s ease;
+        /* 3. Right Sidebar */
+        .right-sidebar {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            position: sticky;
+            top: 20px;
         }
-        .screenshot-img:hover { transform: scale(1.03); border-color: #38bdf8; }
 
-        /* Modal ภาพขยาย */
-        .image-modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(5px); justify-content: center; align-items: center;
+        .sidebar-title {
+            color: #38bdf8; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.3); padding-bottom: 8px;
+            display: flex; align-items: center; justify-content: space-between;
         }
-        .modal-content { max-width: 90%; max-height: 85vh; border-radius: 10px; border: 2px solid #38bdf8; }
-        .modal-close { position: absolute; top: 20px; right: 30px; color: #f8fafc; font-size: 40px; cursor: pointer; }
 
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
+        .new-badge-icon {
+            background: #f43f5e; color: #fff; font-size: 9px; padding: 2px 6px;
+            border-radius: 8px; font-family: 'Press Start 2P', cursive; animation: pulse 1.5s infinite;
         }
+
+        .recent-card {
+            display: flex; gap: 10px; padding: 8px; border-radius: 8px;
+            background: rgba(15, 23, 42, 0.6); border: 1px solid #334155; margin-bottom: 10px;
+            cursor: pointer; transition: 0.2s;
+        }
+        .recent-card:hover { border-color: #38bdf8; transform: translateX(3px); }
+        .recent-thumb { width: 65px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #38bdf8; }
+        .recent-info h4 { margin: 0 0 2px 0; color: #f8fafc; font-size: 14px; }
+        .recent-meta { font-size: 11px; color: #94a3b8; display: flex; gap: 6px; }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1100px) {
+            .layout-grid { grid-template-columns: 220px 1fr; }
+            .right-sidebar { grid-column: span 2; position: static; }
+        }
+        @media (max-width: 768px) {
+            .layout-grid { grid-template-columns: 1fr; }
+            .left-sidebar, .right-sidebar { position: static; }
+        }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -280,49 +261,130 @@
 <div class="container">
     <h1>GAME SYSTEM LIST</h1>
 
-    <div class="main-layout">
-        <!-- ฝั่งซ้าย: เนื้อหาหลัก -->
+    <div class="layout-grid">
+        
+        <!-- เมนูด้านซ้าย (Left Navigation Menu) -->
+        <div class="left-sidebar">
+            <div class="nav-header">NAVIGATION</div>
+            <div class="nav-menu">
+                <div class="nav-item active" onclick="switchTab('systems', this)">
+                    <span>🎮</span> เครื่องเกม / รีวิว
+                </div>
+                <div class="nav-item" onclick="switchTab('characters', this)">
+                    <span>👤</span> ตัวละครวีดีโอเกม
+                </div>
+                <div class="nav-item" onclick="switchTab('magazines', this)">
+                    <span>📖</span> นิตยสารเกม
+                </div>
+                <div class="nav-item" onclick="switchTab('guides', this)">
+                    <span>📚</span> หนังสือบทสรุปเกม
+                </div>
+            </div>
+        </div>
+
+        <!-- ตรงกลาง: เนื้อหาหลัก (Main Content) -->
         <div class="content-area">
             
-            <!-- 1. หน้าหลัก: รายชื่อเครื่องเกมตาม Gen -->
-            <div id="homePage">
-                <div id="genContainer"></div>
+            <!-- Tab 1: รายชื่อเครื่องเกม & รีวิว -->
+            <div id="systemsPage" class="page-section active-page">
+                <div id="systemsMain">
+                    <div id="genContainer"></div>
+                </div>
+
+                <div id="reviewPage" style="display:none;">
+                    <button class="back-btn" onclick="goHomeSystems()">← Back to Systems</button>
+                    <h2 id="selectedConsoleTitle" style="color: #38bdf8; margin-top:0;"></h2>
+                    <div class="alphabet-filter" id="alphabetButtons"></div>
+                    <div class="game-grid" id="gameList"></div>
+                </div>
+
+                <div id="detailPage" style="display:none;">
+                    <button class="back-btn" onclick="goBackToGameList()">← Back to Game List</button>
+                    <div class="section-box" id="detailContent"></div>
+                </div>
             </div>
 
-            <!-- 2. หน้าแสดงรายชื่อเกมทั้งหมดตามตัวอักษร -->
-            <div id="reviewPage">
-                <button class="back-btn" onclick="goHome()">← Back to Systems</button>
-                <h2 id="selectedConsoleTitle" style="color: #38bdf8; margin-top:0; font-size: 1.8rem;"></h2>
-                <div class="alphabet-filter" id="alphabetButtons"></div>
-                <div class="game-grid" id="gameList"></div>
+            <!-- Tab 2: แนะนำตัวละครจากวีดีโอเกม -->
+            <div id="charactersPage" class="page-section">
+                <div class="section-box">
+                    <h2 class="section-header-title">👤 GAME CHARACTERS (แนะนำตัวละคร)</h2>
+                    <div class="item-grid">
+                        <div class="media-card">
+                            <img src="https://i.postimg.cc/gJjyfS65/00.jpg" class="media-thumb" alt="Bill Rizer">
+                            <div class="media-info">
+                                <h3 class="media-title">Bill Rizer & Lance Bean</h3>
+                                <p class="media-sub">Game: Contra (NES)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- 3. หน้ารายละเอียดเกมแบบเจาะลึก -->
-            <div id="detailPage">
-                <button class="back-btn" onclick="goBackToGameList()">← Back to Game List</button>
-                <div class="detail-container" id="detailContent"></div>
+            <!-- Tab 3: หนังสือนิตยสารเกม -->
+            <div id="magazinesPage" class="page-section">
+                <div class="section-box">
+                    <h2 class="section-header-title">📖 GAME MAGAZINES (นิตยสารเกม)</h2>
+                    <div class="item-grid">
+                        <div class="media-card">
+                            <img src="https://via.placeholder.com/200x260/1e293b/38bdf8?text=Magazine+Vol.1" class="media-thumb" style="height:240px;" alt="Magazine">
+                            <div class="media-info">
+                                <h3 class="media-title">Kem Choey Magazine Vol. 1</h3>
+                                <p class="media-sub">ฉบับย้อนรอยเกมยุค 80s</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: หนังสือบทสรุปเกม -->
+            <div id="guidesPage" class="page-section">
+                <div class="section-box">
+                    <h2 class="section-header-title">📚 GAME STRATEGY GUIDES (บทสรุปเกม)</h2>
+                    <div class="item-grid">
+                        <div class="media-card">
+                            <img src="https://via.placeholder.com/200x260/1e293b/f43f5e?text=Guide+Book" class="media-thumb" style="height:240px;" alt="Guide">
+                            <div class="media-info">
+                                <h3 class="media-title">บทสรุป Contra 100% Complete</h3>
+                                <p class="media-sub">เผยสูตรลับและตำแหน่งไอเทม</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
 
-        <!-- ฝั่งขวา: เมนูอัปเดตรีวิวเกมใหม่ล่าสุด (NEW REVIEWS) -->
-        <div class="sidebar">
+        <!-- เมนูด้านขวา (Right Sidebar) -->
+        <div class="right-sidebar">
             <div class="sidebar-title">
                 <span>NEW REVIEWS</span>
                 <span class="new-badge-icon">NEW</span>
             </div>
             <div id="recentReviewsContainer"></div>
         </div>
+
     </div>
 </div>
 
-<!-- Modal สำหรับขยายภาพ -->
-<div id="imageModal" class="image-modal" onclick="closeImageModal()">
-    <span class="modal-close" onclick="closeImageModal()">&times;</span>
-    <img id="modalImg" class="modal-content" src="" alt="Enlarged Image">
-</div>
-
 <script>
+    // สลับหน้าเมนูด้านซ้าย
+    function switchTab(tabName, element) {
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        element.classList.add('active');
+
+        document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-page'));
+        
+        if (tabName === 'systems') {
+            document.getElementById('systemsPage').classList.add('active-page');
+        } else if (tabName === 'characters') {
+            document.getElementById('charactersPage').classList.add('active-page');
+        } else if (tabName === 'magazines') {
+            document.getElementById('magazinesPage').classList.add('active-page');
+        } else if (tabName === 'guides') {
+            document.getElementById('guidesPage').classList.add('active-page');
+        }
+    }
+
     const generations = [
         {
             title: "Active Platforms / Current Gen",
@@ -397,7 +459,6 @@
         }
     ];
 
-    // เพิ่มฟิลด์ date: "YYYY-MM-DD" เพื่อจัดเรียงการอัปเดตล่าสุด
     const games = [
         { 
             id: "contra-fc",
@@ -408,16 +469,10 @@
             date: "2026-03-28",
             genres: ["Action", "Run and Gun"],
             cover: "https://i.postimg.cc/gJjyfS65/00.jpg",
-            screenshots: [
-                "https://i.postimg.cc/Zny8qWHH/01.jpg",
-                "https://i.postimg.cc/h4J6mM32/02.jpg"
-            ],
             summary: "สุดยอดเกมเดินยิงระดับตำนาน การต่อสู้ของ 2 ทหารกล้าถล่มกองทัพเอเลี่ยน!",
-            story: "เรื่องราวเกิดขึ้นในปี ค.ศ. 2633 องค์กรก่อการร้ายต่างดาวในนาม 'Red Falcon' ได้แอบเข้ามายึดครองเกาะ Galuga ใกล้กับอเมริกาใต้ และตั้งฐานปฏิบัติการเพื่อเตรียมล้างเผ่าพันธุ์มนุษยชาติ กองกำลังทหารพิเศษ Earth Marine Corp จึงได้ส่งสองยอดหน่วยรบพิเศษ 'Contra' นามว่า Bill Rizer (Mad Dog) และ Lance Bean (Scorpion) เข้าสู่สมรภูมิเพื่อทำลายล้างพวกมันให้สิ้นซาก",
-            lore: "คำว่า 'Contra' ในจักรวาลของเกม ไม่ได้หมายถึงชื่อตัวละคร แต่เป็น 'รหัสยศพิเศษ' ที่มอบให้กับทหารที่มีจิตวิญญาณแห่งการรบอันเหนือมนุษย์ มีความสามารถในการใช้อาวุธทุกรูปแบบ และสามารถเอาชีวิตรอดในสภาพแวดล้อมที่โหดร้ายที่สุดได้ ตัวละคร Bill และ Lance ได้รับแรงบันดาลใจด้านรูปร่างมาจากดารานักบู๊ฮอลลีวูดอย่าง Arnold Schwarzenegger และ Sylvester Stallone ในยุค 80s",
-            gameplayReview: "เกมเพลย์เป็นแนว Action Side-Scrolling ที่ผสมผสานฉากการเล่นทั้งแบบมุมมองด้านข้างและมุมมอง 3D ด้านหลัง (ในฉากฐานทัพ) อาวุธที่มีให้เก็บหลากหลาย โดยเฉพาะ 'S' (Spread Gun) ที่ยิงกระสุนกระจายเป็นพัดซึ่งเป็นอาวุธยอดฮิต ตัวเกมมีความท้าทายสูงมาก พลาดโดนยิงครั้งเดียวเสียชีวิตทันที นำไปสู่สูตรกดในตำนาน Konami Code 'ขึ้น ขึ้น ลง ลง ซ้าย ขวา ซ้าย ขวา บี เอ' เพื่อเพิ่มชีวิตเป็น 30 ตัว",
-            graphicsReview: "ในยุค 8-bit ถือว่าทำกราฟิกสไปรต์ตัวละครขยับได้ลื่นไหล ฉากหลังมีรายละเอียดดีเยี่ยม ตั้งแต่ป่าดงดิบไปจนถึงฐานทัพเอเลี่ยนชีวภาพที่ทำออกมาได้น่าตื่นตาตื่นใจมากในยุคนั้น",
-            soundReview: "เพลงประกอบระดับขึ้นหิ้ง (Masterpiece) โดย Konami Kukeiha Club ดนตรี Synth-Rock ปลุกใจเร้าอารมณ์สุดๆ พร้อมเสียงเอฟเฟกต์ยิงปืนและระเบิดที่เป็นเอกลักษณ์จดจำง่าย"
+            story: "เรื่องราวเกิดขึ้นในปี ค.ศ. 2633 องค์กรก่อการร้ายต่างดาวในนาม 'Red Falcon' ได้แอบเข้ามายึดครองเกาะ Galuga...",
+            lore: "คำว่า 'Contra' ในจักรวาลของเกม หมายถึง รหัสยศพิเศษที่มอบให้กับทหารที่มีจิตวิญญาณแห่งการรบอันเหนือมนุษย์...",
+            gameplayReview: "เกมเพลย์เป็นแนว Action Side-Scrolling ผสมมุมมอง 3D ในฉากฐานทัพ..."
         }
     ];
 
@@ -429,32 +484,23 @@
         container.innerHTML = '';
         generations.forEach(gen => {
             const sec = document.createElement('div');
-            sec.className = 'gen-section';
-            
+            sec.className = 'section-box';
             let buttonsHtml = gen.consoles.map(c => 
                 `<button class="console-btn" onclick="selectConsole('${c.id}', '${c.name}')">${c.name}</button>`
             ).join('');
 
             sec.innerHTML = `
-                <div class="gen-title">${gen.title}</div>
+                <div class="gen-title">🎮 ${gen.title}</div>
                 <div class="console-list">${buttonsHtml}</div>
             `;
             container.appendChild(sec);
         });
     }
 
-    // แสดงการอัปเดตเกมล่าสุดใน Sidebar ด้านขวา
     function renderRecentReviews() {
         const container = document.getElementById('recentReviewsContainer');
         container.innerHTML = '';
-
-        // เรียงจากเกมอัปเดตล่าสุด (แสดงสูงสุด 5 รายการ)
         const recentList = [...games].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
-
-        if (recentList.length === 0) {
-            container.innerHTML = `<p style="color:#64748b; text-align:center; font-size:14px;">ยังไม่มีรีวิวใหม่</p>`;
-            return;
-        }
 
         recentList.forEach(game => {
             const card = document.createElement('div');
@@ -466,7 +512,7 @@
                 <div class="recent-info">
                     <h4>${game.name}</h4>
                     <div class="recent-meta">
-                        <span>🎮 ${game.consoleName || 'Retro'}</span>
+                        <span>🎮 ${game.consoleName}</span>
                         <span style="color:#f59e0b;">★ ${game.score}</span>
                     </div>
                 </div>
@@ -478,7 +524,7 @@
     function selectConsole(consoleId, consoleName) {
         currentConsole = consoleId;
         currentLetter = 'all';
-        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('systemsMain').style.display = 'none';
         document.getElementById('reviewPage').style.display = 'block';
         document.getElementById('detailPage').style.display = 'none';
         document.getElementById('selectedConsoleTitle').innerText = `Games for ${consoleName}`;
@@ -487,14 +533,14 @@
         renderGames();
     }
 
-    function goHome() {
-        document.getElementById('homePage').style.display = 'block';
+    function goHomeSystems() {
+        document.getElementById('systemsMain').style.display = 'block';
         document.getElementById('reviewPage').style.display = 'none';
         document.getElementById('detailPage').style.display = 'none';
     }
 
     function goBackToGameList() {
-        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('systemsMain').style.display = 'none';
         document.getElementById('reviewPage').style.display = 'block';
         document.getElementById('detailPage').style.display = 'none';
     }
@@ -521,16 +567,13 @@
         const filtered = games.filter(game => {
             const matchConsole = game.consoleId === currentConsole;
             const firstLetter = game.name.charAt(0).toUpperCase();
-            const matchLetter = (currentLetter === 'all') || (firstLetter === currentLetter);
-            return matchConsole && matchLetter;
+            return matchConsole && (currentLetter === 'all' || firstLetter === currentLetter);
         });
 
         if (filtered.length === 0) {
-            list.innerHTML = `<p style="grid-column: 1/-1; color: #64748b; text-align:center; padding: 40px 0; font-size: 1.1rem;">ยังไม่มีรีวิวเกมในหมวดนี้</p>`;
+            list.innerHTML = `<p style="grid-column: 1/-1; color: #64748b; text-align:center; padding: 30px 0;">ยังไม่มีรีวิวในหมวดนี้</p>`;
             return;
         }
-
-        filtered.sort((a, b) => a.name.localeCompare(b.name));
 
         filtered.forEach(game => {
             const card = document.createElement('div');
@@ -541,11 +584,10 @@
 
             card.innerHTML = `
                 <img src="${game.cover}" class="summary-cover" alt="${game.name}">
-                <div class="summary-info">
+                <div>
                     <h3>${game.name}</h3>
-                    <div style="color:#f59e0b; font-size:13px; font-weight:bold;">★ ${game.score}</div>
+                    <div style="color:#f59e0b; font-size:12px; font-weight:bold;">★ ${game.score}</div>
                     <div class="genre-tags">${genreTagsHtml}</div>
-                    <p>${game.summary}</p>
                 </div>
             `;
             list.appendChild(card);
@@ -556,61 +598,24 @@
         const game = games.find(g => g.id === gameId);
         if(!game) return;
 
-        document.getElementById('homePage').style.display = 'none';
+        // บังคับสลับมาที่ Tab Systems เสมอหากคลิกจาก Sidebar
+        switchTab('systems', document.querySelectorAll('.nav-item')[0]);
+
+        document.getElementById('systemsMain').style.display = 'none';
         document.getElementById('reviewPage').style.display = 'none';
         document.getElementById('detailPage').style.display = 'block';
 
-        let screenshotsHtml = '';
-        if (game.screenshots && game.screenshots.length > 0) {
-            screenshotsHtml = `
-                <div class="section-header">GAMEPLAY SCREENSHOTS</div>
-                <div class="screenshot-grid">
-                    ${game.screenshots.map(src => `<img src="${src}" class="screenshot-img" alt="Gameplay" onclick="openImageModal('${src}')">`).join('')}
-                </div>
-            `;
-        }
-
-        const genreTagsHtml = (game.genres || []).map(g => `<span class="genre-tag" style="font-size:13px; padding:4px 12px;">${g}</span>`).join('');
-
         document.getElementById('detailContent').innerHTML = `
-            <div class="detail-header">
-                <img src="${game.cover}" class="detail-cover" alt="${game.name}" onclick="openImageModal('${game.cover}')" title="คลิกเพื่อขยายภาพ">
-                <div class="detail-meta">
-                    <h1 class="detail-title">${game.name}</h1>
-                    <div style="margin-bottom: 14px;"><span class="score-badge">SCORE: ${game.score}</span></div>
-                    <div class="genre-tags">${genreTagsHtml}</div>
-                    <p class="detail-text" style="margin-top:16px;">${game.summary}</p>
-                </div>
-            </div>
-
-            <div class="section-header">📖 STORY (เนื้อเรื่อง)</div>
-            <p class="detail-text">${game.story}</p>
-
-            <div class="section-header">🔮 LORE & TRIVIA (เบื้องหลังและตำนาน)</div>
-            <p class="detail-text">${game.lore}</p>
-
-            <div class="section-header">🎮 GAMEPLAY REVIEW (รีวิวระบบเกม)</div>
-            <p class="detail-text">${game.gameplayReview}</p>
-
-            <div class="section-header">🎨 GRAPHICS REVIEW (กราฟิก)</div>
-            <p class="detail-text">${game.graphicsReview || 'N/A'}</p>
-
-            <div class="section-header">🎵 SOUND & MUSIC REVIEW (ดนตรีและเสียงประกอบ)</div>
-            <p class="detail-text">${game.soundReview || 'N/A'}</p>
-
-            ${screenshotsHtml}
+            <h1 style="color:#38bdf8; margin-top:0;">${game.name}</h1>
+            <p><strong>Console:</strong> ${game.consoleName} | <strong>Score:</strong> ${game.score}</p>
+            <hr style="border-color:rgba(56,189,248,0.2); margin:20px 0;">
+            <h3 style="color:#f43f5e;">📖 STORY</h3>
+            <p style="line-height:1.8; color:#e2e8f0;">${game.story}</p>
+            <h3 style="color:#f43f5e;">🔮 LORE</h3>
+            <p style="line-height:1.8; color:#e2e8f0;">${game.lore}</p>
+            <h3 style="color:#f43f5e;">🎮 GAMEPLAY REVIEW</h3>
+            <p style="line-height:1.8; color:#e2e8f0;">${game.gameplayReview}</p>
         `;
-    }
-
-    function openImageModal(imgSrc) {
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImg');
-        modalImg.src = imgSrc;
-        modal.style.display = 'flex';
-    }
-
-    function closeImageModal() {
-        document.getElementById('imageModal').style.display = 'none';
     }
 
     initGenerations();
